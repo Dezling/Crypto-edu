@@ -85,12 +85,12 @@ const channels = ref([
   {
     title: 'Кейсы & Обучение',
     description: 'Эксклюзивные материалы и практические кейсы',
-    link: '#'
+    link: 'https://t.me/tetherkeys'
   },
   {
     title: 'Основной канал',
     description: 'Новости проекта и полезные материалы',
-    link: '#'
+    link: 'https://t.me/spreadt'
   }
 ])
 

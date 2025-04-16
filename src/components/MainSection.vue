@@ -6,15 +6,15 @@
     <div class="content-wrapper">
       <div class="text-content">
         <h1 class="title">
-          <span class="gradient-text">Мастерство</span><br>
-          в криптотрейдинге
+          <span class="gradient-text">Обучение</span><br>
+          Арбитражу Криптовалют
         </h1>
         <p class="description">
-          8-недельный интенсив с практикой на реальных рынках.<br>
-          От основ блокчейна до продвинутых торговых стратегий.
+          Стань aкулой
+          aрбитражной торговли
         </p>
         <button class="cta-button">
-          Начать обучение
+          Я ГОТОВ НАЧАТЬ
           <div class="hover-line"></div>
         </button>
       </div>

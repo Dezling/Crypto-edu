@@ -28,8 +28,10 @@ import BriefingSection from './components/BriefingSection.vue'
 import TarifSection from './components/TarifSection.vue'
 import SharedSection from './components/SharedSection.vue'
 import FaqSection from './components/FaqSection.vue'
+import ProfileSection from './components/ProfileSection.vue'
 const sections = [
   { component: MainSection },
+  {component: ProfileSection},
   { component: AboutSection },
   { component: BriefingSection },
   { component: TarifSection },

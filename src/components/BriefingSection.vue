@@ -30,6 +30,7 @@
 
 
     <div class="content-wrapper">
+      
       <div class="text-content">
         <h2 class="section-title">
           <span class="gradient-text">Старт с нуля</span> — 
@@ -131,23 +132,46 @@
 
 <script setup>
 import { ref } from 'vue'
-
 const steps = ref([
   {
-    title: 'Базовые принципы',
-    description: 'Заебало'
+    title: 'Полный обзор бирж',
+    description: 'Рабочие биржи и понимание, с чего заходить'
   },
   {
-    title: 'Анализ рынка',
-    description: 'Придумывать'
+    title: 'Базовые связки',
+    description: 'Модели, которые можно масштабировать'
   },
   {
-    title: 'Х',
-    description: 'Что'
+    title: 'Арбитраж без карт',
+    description: 'Связки без карт, банков, блоков'
   },
   {
-    title: 'Сосал',
-    description: 'То'
+    title: 'Практические уроки',
+    description: 'Не просто теория, а реальное применение'
+  },
+  {
+    title: 'Домашние задания',
+    description: 'С обратной связью от куратора'
+  },
+  {
+    title: 'Поддержка куратора',
+    description: 'Помощь практикующего специалиста'
+  },
+  {
+    title: 'Рабочее комьюнити',
+    description: 'Общение с действующими трейдерами'
+  },
+  {
+    title: 'Личные консультации',
+    description: 'Регулярные созвоны с автором курса'
+  },
+  {
+    title: 'База знаний',
+    description: 'Доступ к эксклюзивным материалам'
+  },
+  {
+    title: 'Бонусный контент',
+    description: 'Интервью с безопасником о мошенниках'
   }
 ])
 

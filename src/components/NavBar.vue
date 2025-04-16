@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" :class="{ 'scrolled': isScrolled }">
     <div class="logo" @click="scrollToTop">
-      <span class="gradient-text">CRYPTO</span>EDU
+      <span class="gradient-text">ISTO</span>MIN
     </div>
     
     <ul class="nav-links">
@@ -50,7 +50,7 @@ const links = ref([
   { name: 'Программа', path: '#program' },
   { name: 'Кейсы', path: '#briefing' },
   { name: 'Отзывы', path: '#reviews' },
-  { name: 'Тарифы', path: '#pricing' }
+  { name: 'Тарифы', path: '#pricing' },
 ])
 
 const hoverActive = ref(null)
