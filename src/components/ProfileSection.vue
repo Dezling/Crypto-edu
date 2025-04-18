@@ -10,7 +10,7 @@
         <h2 class="card-title">Миллионер, плейбой, филантроп</h2>
           <div class="photo-wrapper">
             <img 
-              src="@/assets/money.jpg" 
+              src="@/assets/monney.jpg" 
               alt="Фото с деньгами"
               class="animated-photo"
             >
