@@ -3,8 +3,8 @@
     <div class="content-wrapper">
       <div class="text-content">
         <h2 class="section-title">
-          <span class="gradient-text">Ваш эксперт</span><br>
-          в криптотрейдинге
+          <span class="gradient-text">Наша Команда Экспертов</span><br>
+          в Арбитраже
         </h2>
         
         <div class="advantages">
@@ -14,11 +14,7 @@
             class="advantage-card"
           >
             <div class="icon-container">
-              <img 
-                :src="`/src/assets/icons/${index + 5}.svg`"
-                class="card-icon"
-                alt="advantage icon"
-              >
+              <div class="icon-wrapper" v-html="item.icon"></div>
               <div class="icon-glow"></div>
             </div>
             <h3 class="card-title">{{ item.title }}</h3>
@@ -34,11 +30,7 @@
             :key="index" 
             class="stat-item"
           >
-            <img 
-              :src="`/src/assets/icons/${index * 2 + 4}.svg`"
-              class="stat-icon"
-              alt="stat icon"
-            >
+            <div class="stat-icon-wrapper" v-html="stat.icon"></div>
             <div class="stat-value">{{ stat.value }}</div>
             <div class="stat-label">{{ stat.label }}</div>
           </div>
@@ -59,37 +51,116 @@ import { ref } from 'vue'
 const advantages = ref([
   {
     title: 'Командные достижения',
-    text: 'Построил две арбитражные команды полного цикла'
+    text: 'Построили две арбитражные команды полного цикла',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>`
   },
   {
     title: 'Опыт с Обменниками',
-    text: 'Создал свой обменник в Тайланде и Индонезии'
+    text: 'Создали свои обменники в Тайланде и Индонезии',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+          </svg>`
   },
   {
     title: 'Методики',
-    text: 'Обнаружил несколько самых прибыльных и громких связок в арбитраже'
+    text: 'Обнаружили несколько самых прибыльных и громких связок в арбитраже',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>`
   },
   {
     title: 'Доверие ByBit',
-    text: 'Являюсь официальным партнером ByBit'
+    text: 'Являемся официальными партнерами ByBit',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>`
   },
-  
 ])
 
 const stats = ref([
-  { value: '95%', label: 'Успешных сделок' },
-  { value: '10k+', label: 'Часов обучения' },
-  { value: '1000+', label: 'Людей прошедших обучение' },
-  { value: '150%', label: 'Средняя доходность' },
-  { value: '350+', label: 'Личных сессий в качестве наставника' },
-  { value: 'Оборот', label: 'за полгода торговли 3.000.000$' }
+  { 
+    value: '95%', 
+    label: 'Успешных сделок',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>`
+  },
+  { 
+    value: '10k+', 
+    label: 'Часов обучения',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>`
+  },
+  { 
+    value: '1000+', 
+    label: 'Людей прошедших обучение',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>`
+  },
+  { 
+    value: '150%', 
+    label: 'Средняя доходность',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>`
+  },
+  { 
+    value: '350+', 
+    label: 'Личных сессий в качестве наставников',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>`
+  },
+  { 
+    value: 'Оборот', 
+    label: 'за полгода торговли 3.000.000$',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>`
+  }
 ])
 </script>
 
 <style scoped>
+/* Добавленные/измененные стили для иконок */
+.icon-wrapper,
+.stat-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper svg,
+.stat-icon-wrapper svg {
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+.icon-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1.5rem;
+  color: #BA55D3; /* Цвет для преимуществ */
+}
+
+.stat-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  color: #8A2BE2; /* Цвет для статистики */
+}
+
+/* Остальные стили остаются без изменений */
+</style>
+<style scoped>
 .about-section {
   padding: 8rem 5% 4rem;
-  /* background: #0a0a0a; */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -145,12 +216,10 @@ const stats = ref([
 }
 
 .card-icon {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.4));
-  transition: all 0.3s ease;
-  z-index: 2;
-  position: relative;
+  width: 80px;
+  height: 80px;
+  color: #BA55D3;
+  padding: 0.5rem;
 }
 
 .icon-glow {
@@ -187,7 +256,7 @@ const stats = ref([
 }
 
 .stat-item {
-  padding: 3rem;
+  padding: 2rem;
   border-radius: 16px;
   background: rgba(20, 20, 30, 0.8);
   backdrop-filter: blur(10px);
@@ -201,14 +270,15 @@ const stats = ref([
 }
 
 .stat-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  color: #8A2BE2;
   margin-bottom: 1rem;
-  filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.4));
+  padding: 0.3rem;
 }
 
 .stat-value {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   background: linear-gradient(45deg, #8A2BE2, #BA55D3);
   -webkit-background-clip: text;
@@ -263,20 +333,20 @@ const stats = ref([
     height: 60px;
   }
   
-  .stat-icon {
+  .card-icon {
     width: 50px;
     height: 50px;
+  }
+  
+  .stat-icon {
+    width: 40px;
+    height: 40px;
   }
 }
 
 @media (min-width: 1024px) {
   .about-section {
     min-height: 100vh;
-  }
-  
-  .card-icon {
-    width: 100px;
-    height: 100px;
   }
 }
 </style>
