@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" :class="{ 'scrolled': isScrolled }">
     <div class="logo" @click="scrollToTop">
-      <span class="gradient-text">ISTO</span>MIN
+      <span class="gradient-text">SPREDT</span>.RU
     </div>
     
     <ul class="nav-links">

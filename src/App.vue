@@ -15,7 +15,6 @@
     >
       <component :is="section.component" />
     </section>
-
   </div>
 </template>
 
@@ -30,8 +29,10 @@ import SharedSection from './components/SharedSection.vue'
 import FaqSection from './components/FaqSection.vue'
 import ProfileSection from './components/ProfileSection.vue'
 import CasesComponent from './components/CasesComponent.vue'
+import ArbitrageSection from './components/ArbitrageSection.vue'
 const sections = [
   { component: MainSection },
+  {component: ArbitrageSection},
   {component: ProfileSection},
   { component: AboutSection },
   { component: BriefingSection },
@@ -50,7 +51,7 @@ onMounted(() => {
   const options = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.4
+    threshold: 0.35
   }
 
   observer = new IntersectionObserver((entries) => {

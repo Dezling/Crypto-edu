@@ -4,15 +4,23 @@
       <img src="/src/assets/1.svg" class="coin " alt="coin">
     </div>
     <div class="content-wrapper">
-      <div class="text-content">
-        <h1 class="title">
-          <span class="gradient-text">Обучение</span><br>
-          Арбитражу Криптовалют
-        </h1>
-        <p class="description">
-          Стань aкулой
-          aрбитражной торговли
-        </p>
+     <div class="text-content">
+      <h1 class="title">
+        <span class="gradient-text">Арбитраж</span><br>
+        <div class="animated-slogan">
+          <span class="word-accent">Трейдинг</span> 
+          <span class="word-accent">Без</span> 
+          <span class="word-accent">Границ</span>
+        </div>
+      </h1>
+      
+      <div class="dynamic-description">
+        <p>Обучись стратегиям, которые <span class="text-flare">приносят 150% ROI</span></p>
+        <div class="features-grid">
+          <div class="feature-badge">5+ лет практики</div>
+          <div class="feature-badge">95% успешных сделок</div>
+        </div>
+      </div>
         <button class="cta-button">
           Я ГОТОВ НАЧАТЬ
           <div class="hover-line"></div>
@@ -41,7 +49,83 @@
   position: relative;
   overflow: hidden;
 }
+.animated-slogan {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+}
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 
+.word-accent {
+  display: inline-block;
+  font-size: 3.2rem;
+  line-height: 1;
+  margin: 0 0.8rem;
+  animation: blink 2s ease-in forwards;
+}
+
+.word-accent:nth-child(1) { animation-delay: 0.2s; color: #BA55D3; }
+.word-accent:nth-child(2) {animation-delay: 0.5s; color: #9370DB; }
+.word-accent:nth-child(3) { animation-delay: 0.8s;color: #8A2BE2; }
+.dynamic-description {
+  position: relative;
+  margin: 2rem 0;
+  font-size: 1.4rem;
+  max-width: 700px;
+}
+.text-flare {
+  position: relative;
+  font-weight: 700;
+  background: linear-gradient(45deg, #8A2BE2, #FF00FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 0.3rem;
+}
+.text-flare::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #8A2BE2 0%, transparent 90%);
+  animation: flareMove 2.5s infinite;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.feature-badge {
+  background: rgba(138, 43, 226, 0.15);
+  border: 1px solid #8A2BE2;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.feature-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+}
+
+@keyframes flareMove {
+  0% { opacity: 0; transform: translateX(-100%); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(200%); }
+}
 .content-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
