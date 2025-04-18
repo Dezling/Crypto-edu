@@ -29,11 +29,13 @@ import TarifSection from './components/TarifSection.vue'
 import SharedSection from './components/SharedSection.vue'
 import FaqSection from './components/FaqSection.vue'
 import ProfileSection from './components/ProfileSection.vue'
+import CasesComponent from './components/CasesComponent.vue'
 const sections = [
   { component: MainSection },
   {component: ProfileSection},
   { component: AboutSection },
   { component: BriefingSection },
+  {component: CasesComponent},
   { component: TarifSection },
   { component: FaqSection },
   { component: SharedSection }

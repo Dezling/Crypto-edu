@@ -166,14 +166,16 @@ const tariffs = ref([
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .tariff-card {
   background: rgba(255, 255, 255, 0.03);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2.5rem;
   position: relative;
   opacity: 0;
   transform: translateY(30px);
@@ -181,6 +183,7 @@ const tariffs = ref([
   animation-delay: var(--delay);
   transition: transform 0.3s ease;
   border: 1px solid rgba(138, 43, 226, 0.15);
+  min-height: 650px;
 }
 
 .tariff-card:hover {
@@ -190,13 +193,13 @@ const tariffs = ref([
 
 .tariff-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .tariff-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #8A2BE2;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .tariff-price {
@@ -213,10 +216,11 @@ const tariffs = ref([
 }
 
 .feature-item {
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   color: #CCCCCC;
   display: flex;
   align-items: center;
+  line-height: 1.5;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 1.05rem;

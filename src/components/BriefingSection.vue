@@ -1,7 +1,6 @@
 <template>
-  <section id="briefing" class="briefing-section">
-    <!-- Декоративные фоновые элементы -->
-       <div class="decorative-elements">
+  <section class="steps-section">
+    <div class="decorative-elements">
       <svg class="floating-orb left" viewBox="0 0 200 200">
         <circle cx="100" cy="100" r="80" fill="url(#orbGradient)"/>
         <defs>
@@ -11,26 +10,9 @@
           </radialGradient>
         </defs>
       </svg>
-
-      <svg class="geometric-pattern right" viewBox="0 0 200 200">
-        <path 
-          d="M20,20 L180,20 L180,180 L20,180 Z"
-          stroke="url(#patternGradient)"
-          stroke-width="2"
-          fill="none"
-        />
-        <defs>
-          <linearGradient id="patternGradient">
-            <stop offset="0%" stop-color="#8A2BE2"/>
-            <stop offset="100%" stop-color="#4B0082"/>
-          </linearGradient>
-        </defs>
-      </svg>
     </div>
 
-
     <div class="content-wrapper">
-      
       <div class="text-content">
         <h2 class="section-title">
           <span class="gradient-text">Старт с нуля</span> — 
@@ -62,66 +44,18 @@
               </svg>
               
               <div class="step-icon">
-                <img 
-                  :src="`/src/assets/icons/${index + 1}.svg`" 
-                  alt="Step icon"
-                >
+                <svg v-html="step.icon">
+                </svg>
+                  <defs>
+        <linearGradient id="iconGradient">
+          <stop offset="0%" stop-color="#8A2BE2" />
+          <stop offset="100%" stop-color="#4B0082" />
+        </linearGradient>
+      </defs>
               </div>
-              <div class="step-number">0{{ index + 1 }}</div>
+              <div class="step-number">{{ index + 1 }}</div>
               <h3 class="step-title">{{ step.title }}</h3>
               <p class="step-description">{{ step.description }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cases-content">
-        <div class="cases-grid">
-          <div 
-            v-for="(caseItem, index) in cases" 
-            :key="index" 
-            class="case-card"
-          >
-            <div class="case-card-inner">
-              <div class="case-header">
-                <div class="avatar-container">
-                  <img 
-                    :src="caseItem.photo" 
-                    :alt="caseItem.name" 
-                    class="case-avatar"
-                  >
-                  <svg class="avatar-circle" viewBox="0 0 100 100">
-                    <circle 
-                      cx="50" 
-                      cy="50" 
-                      r="45" 
-                      stroke="#8A2BE2" 
-                      stroke-width="2" 
-                      fill="none"
-                      pathLength="100"
-                    />
-                  </svg>
-                </div>
-                <div class="case-info">
-                  <div class="case-name">{{ caseItem.name }}</div>
-                  <div class="case-period">{{ caseItem.period }}</div>
-                </div>
-              </div>
-              
-              <div class="case-stats">
-                <div class="stat-item">
-                  <div class="stat-value">{{ caseItem.result }}</div>
-                  <div class="stat-label">Доходность</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-value">{{ caseItem.duration }}</div>
-                  <div class="stat-label">Обучение</div>
-                </div>
-              </div>
-              
-              <div class="case-comment">
-                “{{ caseItem.comment }}”
-              </div>
             </div>
           </div>
         </div>
@@ -130,80 +64,102 @@
   </section>
 </template>
 
+
 <script setup>
 import { ref } from 'vue'
+
 const steps = ref([
   {
     title: 'Полный обзор бирж',
-    description: 'Рабочие биржи и понимание, с чего заходить'
+    description: 'Рабочие биржи и понимание, с чего заходить',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>`
   },
   {
     title: 'Базовые связки',
-    description: 'Модели, которые можно масштабировать'
+    description: 'Модели, которые можно масштабировать',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>`
   },
   {
     title: 'Арбитраж без карт',
-    description: 'Связки без карт, банков, блоков'
+    description: 'Связки без карт, банков, блоков',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+          </svg>`
   },
   {
     title: 'Практические уроки',
-    description: 'Не просто теория, а реальное применение'
+    description: 'Не просто теория, а реальное применение',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>`
   },
   {
     title: 'Домашние задания',
-    description: 'С обратной связью от куратора'
+    description: 'С обратной связью от куратора',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>`
   },
   {
     title: 'Поддержка куратора',
-    description: 'Помощь практикующего специалиста'
+    description: 'Помощь практикующего специалиста',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+          </svg>`
   },
   {
     title: 'Рабочее комьюнити',
-    description: 'Общение с действующими трейдерами'
+    description: 'Общение с действующими трейдерами',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>`
   },
   {
     title: 'Личные консультации',
-    description: 'Регулярные созвоны с автором курса'
+    description: 'Регулярные созвоны с автором курса',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>`
   },
   {
     title: 'База знаний',
-    description: 'Доступ к эксклюзивным материалам'
+    description: 'Доступ к эксклюзивным материалам',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>`
   },
   {
     title: 'Бонусный контент',
-    description: 'Интервью с безопасником о мошенниках'
-  }
-])
-
-const cases = ref([
-  {
-    name: 'Артем С.',
-    period: 'Выпускник 2023',
-    result: '+327%',
-    duration: '3 месяца',
-    photo: 'https://i.pravatar.cc/150?img=1',
-    comment: 'Курс полностью изменил мой подход к трейдингу. Теперь я чётко понимаю рыночные тенденции и могу прогнозировать движения!'
-  },
-  {
-    name: 'Ольга М.',
-    period: 'Выпускница 2022',
-    result: '+415%',
-    duration: '4 месяца',
-    photo: 'https://i.pravatar.cc/150?img=2',
-    comment: 'Никогда не думала, что смогу так быстро разобраться в крипте. Обучение структурировано и максимально практично!'
-  },
-  {
-    name: 'Дмитрий К.',
-    period: 'Выпускник 2024',
-    result: '+689%',
-    duration: '5 месяцев',
-    photo: 'https://i.pravatar.cc/150?img=3',
-    comment: 'Лучшее решение в моей жизни! Поддержка менторов и сообщества бесценна. Рекомендую всем!'
+    description: 'Интервью с безопасником о мошенниках',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>`
   }
 ])
 </script>
 
 <style scoped>
+.step-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: url(#iconGradient);
+  filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
+}
+
+/* .step-card-inner defs {
+
+fill: url(#iconGradient);
+  <stop offset="0%" stop-color="#8A2BE2" />
+  <stop offset="100%" stop-color="#4B0082" />
+  </linearGradient>
+} */
+.step-card-inner {
+  background: linear-gradient(to right, #8A2BE2, #4B0082);
+}
 .briefing-section {
   padding: 8rem 0;
   position: relative;
