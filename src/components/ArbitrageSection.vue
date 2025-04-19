@@ -11,7 +11,7 @@
       <div class="explanation-block">
         <div class="animated-diagram">
           <div class="exchange-platform left">
-            <div class="platform-name">Биржа A</div>
+            <div class="platform-name">Покупка USDT</div>
             <div class="price buy">92₽</div>
           </div>
           
@@ -22,7 +22,7 @@
           </div>
 
           <div class="exchange-platform right">
-            <div class="platform-name">Биржа B</div>
+            <div class="platform-name">Продажа USDT</div>
             <div class="price sell">96₽</div>
           </div>
         </div>

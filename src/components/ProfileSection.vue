@@ -10,7 +10,7 @@
         <h2 class="card-title">Миллионер, плейбой, филантроп</h2>
           <div class="photo-wrapper">
             <img 
-              src="@/assets/monney.jpg" 
+              src="@/assets/mon.jpg" 
               alt="Фото с деньгами"
               class="animated-photo"
             >
@@ -85,7 +85,7 @@ export default {
   }
 }
 .animated-photo {
-  width: 100%;
+  width: 40%;
   height: 500px;
   object-fit: cover;
   position: relative;

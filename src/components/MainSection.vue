@@ -6,19 +6,19 @@
     <div class="content-wrapper">
      <div class="text-content">
       <h1 class="title">
-        <span class="gradient-text">Арбитраж</span><br>
+        <span class="gradient-text">Обучение</span><br>
         <div class="animated-slogan">
-          <span class="word-accent">Трейдинг</span> 
-          <span class="word-accent">Без</span> 
-          <span class="word-accent">Границ</span>
+          <span class="word-accent">Арбитражу</span> 
+          <span class="word-accent"></span> 
+          <span class="word-accent">Криптовалют</span>
         </div>
       </h1>
       
       <div class="dynamic-description">
-        <p>Обучись стратегиям, которые <span class="text-flare">приносят 150% ROI</span></p>
+        <p>СТАНЬ АКУЛОЙ <span class="text-flare">АРБИТРАЖНОЙ ТОРГОВЛИ</span></p>
         <div class="features-grid">
           <div class="feature-badge">5+ лет практики</div>
-          <div class="feature-badge">95% успешных сделок</div>
+          <div class="feature-badge">1000+ учеников</div>
         </div>
       </div>
         <button class="cta-button">
@@ -64,10 +64,11 @@
 }
 
 .word-accent {
-  display: inline-block;
+  display: inline-flex;
   font-size: 3.2rem;
   line-height: 1;
-  margin: 0 0.8rem;
+  text-align: left;
+  /* margin: 0 0.8rem; */
   animation: blink 2s ease-in forwards;
 }
 
@@ -140,10 +141,12 @@
 .text-content {
   position: relative;
   z-index: 3;
+    text-align: left; /* Выравнивание текста по левую сторону */
+
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 5rem;
   line-height: 1.05;
   margin-bottom: 1.5rem;
   color: #FFFFFF;
@@ -193,7 +196,7 @@
 
 .visual-element {
   position: relative;
-  height: 500px;
+  height: 600px;
   width: 100%;
 }
 
@@ -228,12 +231,12 @@
 
 .coin {
   position: absolute;
-  width: 580px;
-  height: 580px;
+  width: 900px;
+  height: 900px;
   opacity: 0.7;
   transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
-  top: 45%;
-  left: 52%;
+  top: 50%;
+  left: 32%;
   transform: translateY(-50%);
   filter: 
     drop-shadow(0 0 30px rgba(138, 43, 226, 0.4))
