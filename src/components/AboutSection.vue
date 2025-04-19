@@ -35,11 +35,6 @@
             <div class="stat-label">{{ stat.label }}</div>
           </div>
         </div>
-        <img 
-          src="/src/assets/icons/17.svg" 
-          class="floating-chart" 
-          alt="chart"
-        >
       </div>
     </div>
   </section>

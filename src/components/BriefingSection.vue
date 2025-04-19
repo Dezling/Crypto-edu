@@ -1,62 +1,111 @@
 <template>
   <section class="steps-section">
     <div class="decorative-elements">
-      <svg class="floating-orb left" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="80" fill="url(#orbGradient)"/>
-        <defs>
-          <radialGradient id="orbGradient">
-            <stop offset="0%" stop-color="#8A2BE2" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#4B0082" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-      </svg>
+      <!-- Декоративные элементы без изменений -->
     </div>
 
     <div class="content-wrapper">
       <div class="text-content">
-        <h2 class="section-title">
-          <span class="gradient-text">Старт с нуля</span> — 
-          <span class="animated-underline">ваш путь к успеху</span>
-        </h2>
-        
-        <div class="steps-container">
-          <div 
-            v-for="(step, index) in steps" 
-            :key="index" 
-            class="step-card"
-          >
-            <div class="step-card-inner">
-              <svg class="step-border" viewBox="0 0 280 280">
-                <path 
-                  d="M20,20 L260,20 L260,260 L20,260 Z"
-                  fill="none"
-                  stroke="url(#borderGradient)"
-                  stroke-width="2"
-                  stroke-dasharray="1000"
-                  stroke-dashoffset="1000"
-                />
-                <defs>
-                  <linearGradient id="borderGradient">
-                    <stop offset="0%" stop-color="#8A2BE2" />
-                    <stop offset="100%" stop-color="#4B0082" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              
-              <div class="step-icon">
-                <svg v-html="step.icon">
-                </svg>
-                  <defs>
-        <linearGradient id="iconGradient">
-          <stop offset="0%" stop-color="#8A2BE2" />
-          <stop offset="100%" stop-color="#4B0082" />
-        </linearGradient>
-      </defs>
+        <!-- Секция "О подходе" -->
+        <div class="approach-section">
+          <h2 class="section-title">
+            <span class="gradient-text">Профессиональный подход</span> — 
+            <span class="animated-underline">основа вашего успеха</span>
+          </h2>
+
+          <div class="approach-content">
+            <div class="approach-card gradient-border">
+              <h3>📈 Мой подход к обучению</h3>
+              <p class="emphasis-text">
+                Для меня обучение - это детище. Каждый модуль продуман как дополнение к базе: 
+                с каждым уроком мы укрепляем структуру и увеличиваем доход.
+              </p>
+              <div class="features-grid">
+                <div class="feature-item">
+                  <div class="feature-icon">🎯</div>
+                  <h4>Прямые эфиры</h4>
+                  <p>Интерактивные занятия с живым общением</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">📚</div>
+                  <h4>Материалы</h4>
+                  <p>Конспекты, чек-листы и шаблоны после каждого урока</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">💼</div>
+                  <h4>Практика</h4>
+                  <p>Реальные кейсы и задания для немедленного применения</p>
+                </div>
               </div>
-              <div class="step-number">{{ index + 1 }}</div>
-              <h3 class="step-title">{{ step.title }}</h3>
-              <p class="step-description">{{ step.description }}</p>
             </div>
+          </div>
+        </div>
+
+        <!-- Карусель с модулями -->
+        <div class="modules-carousel">
+          <h2 class="section-title">
+            <span class="gradient-text">Программа обучения</span> — 
+            <span class="animated-underline">пошаговый путь к мастерству</span>
+          </h2>
+
+          <div class="modules-container" ref="carousel" @wheel.prevent="handleWheel">
+            <div 
+              v-for="(module, index) in modules" 
+              :key="index" 
+              class="module-card"
+            >
+              <div class="module-card-inner">
+                <div class="module-header">
+                  <span class="module-number">{{ index + 1 }}</span>
+                  <h3 class="module-title">{{ module.title }}</h3>
+                </div>
+                <div class="module-content">
+                  <ul class="module-points">
+                    <li v-for="(point, i) in module.points" :key="i"> {{ point }}</li>
+                  </ul>
+                  <div class="module-result">
+                    <span class="result-label">Результат:</span>
+                    {{ module.result }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Секция с домашними заданиями -->
+        <div class="homework-section">
+          <div class="homework-content gradient-border">
+            <h3>📌 Домашние задания</h3>
+            <p class="emphasis-text">
+              Практические задачи, которые приближают вас к реальным заработкам:
+            </p>
+            <div class="hw-examples">
+              <div v-for="(hw, index) in homeworks" :key="index" class="hw-card">
+                <div class="hw-icon">{{ hw.emoji }}</div>
+                <div class="hw-text">
+                  <h4>{{ hw.title }}</h4>
+                  <p>{{ hw.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Итоговый блок -->
+        <div class="final-block">
+          <div class="final-content">
+            <h3>🚀 Итог обучения</h3>
+            <p class="emphasis-text">
+              После прохождения программы вы будете обладать знаниями, 
+              которых нет у 80% участников рынка. Мои ученики:
+            </p>
+            <ul class="final-list">
+              <li> Создают устойчивые арбитражные конструкции</li>
+              <li> Работают с международными рынками</li>
+              <li> Масштабируют бизнес в 3-5 раз</li>
+              <li> Открывают собственные обменные пункты</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -64,165 +113,86 @@
   </section>
 </template>
 
-
 <script setup>
 import { ref } from 'vue'
 
-const steps = ref([
+const modules = ref([
   {
-    title: 'Полный обзор бирж',
-    description: 'Рабочие биржи и понимание, с чего заходить',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-          </svg>`
+    title: 'Нулевой модуль: Матчасть',
+    points: [
+      'Фундаментальные принципы арбитража',
+      'Психология успешного трейдера',
+      'Управление рисками и капиталом'
+    ],
+    result: 'Полная смена мышления и понимание основ'
   },
-  {
-    title: 'Базовые связки',
-    description: 'Модели, которые можно масштабировать',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>`
+    {
+    title: 'Первый модуль: Теория, 2 урока :',
+    points: [
+      'основы арбитража и безопасность',
+      'По итогам прохождения модуля, ученик технически будет готов к великим свершениям.'
+    
+    ],
+    result: 'Планомерно готовимся к торговле '
   },
-  {
-    title: 'Арбитраж без карт',
-    description: 'Связки без карт, банков, блоков',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-          </svg>`
+    {
+    title: 'Второй модуль : Практика.  2 урока :',
+    points: [
+      ' Практика арбитраж и учёт финансов. Ставлю ученику "базу", показываю как работать в "стакане" так, чтобы зарабатывать даже без ликвидности на рынке.',
+    ],
+    result: 'На учёте финансов мы учимся считать и разбираем арбитраж как бизнес по винтикам. '
   },
-  {
-    title: 'Практические уроки',
-    description: 'Не просто теория, а реальное применение',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>`
+    {
+    title: 'Третий модуль :  Укрепление. ',
+    points: [
+      'Проводим большой урок по созданию устойчивой конструкции. ',
+      'Темы урока : Как доставать деньги после блокировки, Уникализация устройств, Как перевыпустить счёт после блокировки, всё про дропов ( от поиска до организации работы ), компрометация. ',
+    ],
+    result: 'По прохождению урока, ученик будет более компетентный чем 80% рынка арбитража.'
   },
-  {
-    title: 'Домашние задания',
-    description: 'С моей обратной связью',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>`
+      {
+    title: 'Четвёртый модуль : Масштабирование. 2 урока',
+    points: [
+      'Про команду и привлечение инвестиций.',
+    ],
+    result: 'Переходим к кратному росту структуры. '
   },
-  {
-    title: 'Моя Поддержка',
-    description: 'Личная помощь во время обучения',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
-          </svg>`
+     {
+    title: 'Пятый модуль : Новые рынки.',
+    points: [
+      'Такого в принципе нет ни у кого кроме меня.',
+      'От "классики" за рубежом, то арбитража без карт на других рынках.',
+      'Говорим так же про открытие своих обменников в других странах.'
+    ],
+    result: 'У вас появится очень обширный опыт в Арбитраже'
   },
+  // Добавьте остальные модули по аналогии
+]);
+
+const homeworks = ref([
   {
-    title: 'Рабочее комьюнити',
-    description: 'Общение с действующими трейдерами',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-          </svg>`
+    emoji: '📝',
+    title: 'Регистрация на платформах',
+    description: 'Подготовка рабочих инструментов для старта'
   },
-  {
-    title: 'Личные консультации',
-    description: 'Регулярные созвоны с со мной',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-          </svg>`
-  },
-  {
-    title: 'База знаний',
-    description: 'Доступ к эксклюзивным материалам',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-          </svg>`
-  },
-  {
-    title: 'Бонусный контент',
-    description: 'Интервью с безопасником о мошенниках',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-          </svg>`
+  // Добавьте остальные задания
+]);
+
+const carousel = ref(null)
+
+const handleWheel = (e) => {
+  if (carousel.value) {
+    const delta = Math.sign(e.deltaY)
+    carousel.value.scrollLeft += delta * 100
   }
-])
+}
 </script>
-
 <style scoped>
-.step-icon svg {
-  width: 100%;
-  height: 100%;
-  stroke: url(#iconGradient);
-  filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
-}
-
-/* .step-card-inner defs {
-
-fill: url(#iconGradient);
-  <stop offset="0%" stop-color="#8A2BE2" />
-  <stop offset="100%" stop-color="#4B0082" />
-  </linearGradient>
-} */
-.step-card-inner {
-  background: linear-gradient(to right, #8A2BE2, #4B0082);
-}
-.briefing-section {
-  padding: 8rem 0;
+/* Базовые стили */
+.steps-section {
   position: relative;
+  padding: 6rem 0;
   overflow: hidden;
-}
-
-.decorative-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-.floating-orb {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  animation: floatOrb 20s infinite linear;
-  filter: blur(80px);
-  opacity: 0.15;
-}
-.floating-orb.left {
-  left: -300px;
-  top: 20%;
-}
-.floating-orb.right {
-  right: -300px;
-  bottom: 20%;
-  animation-delay: -10s;
-}
-@keyframes floatOrb {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-50px) scale(1.2); }
-}
-
-.geometric-pattern {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  opacity: 0.1;
-  animation: rotatePattern 40s linear infinite;
-}
-
-.geometric-pattern.right {
-  right: -100px;
-  top: 30%;
-}
-@keyframes rotatePattern {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.circuit-line {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  opacity: 0.15;
-  animation: lineFlow 25s linear infinite;
-}
-
-@keyframes lineFlow {
-  from { stroke-dashoffset: 1000; }
-  to { stroke-dashoffset: 0; }
 }
 
 .content-wrapper {
@@ -234,9 +204,10 @@ fill: url(#iconGradient);
 }
 
 .section-title {
-  font-size: 3.2rem;
+  font-size: 2.8rem;
   text-align: center;
   margin-bottom: 4rem;
+  line-height: 1.3;
 }
 
 .gradient-text {
@@ -267,168 +238,292 @@ fill: url(#iconGradient);
   transform: scaleX(1);
 }
 
-.steps-container {
+/* Стили для карточек */
+.approach-card {
+  background: rgba(25, 25, 35, 0.9);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.approach-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.approach-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+}
+
+.features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 6rem;
-}
-
-.step-card {
-  position: relative;
-  perspective: 1000px;
-}
-
-.step-card-inner {
-  position: relative;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 1rem;
-    overflow: hidden;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.step-card:hover .step-card-inner {
-  transform: rotateY(5deg) rotateX(5deg) translateY(-5px);
-}
-
-.step-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.4s;
-  animation: drawBorder 1.5s forwards;
-}
-
-@keyframes drawBorder {
-  to {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-}
-
-.step-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  transition: transform 0.4s;
-}
-
-.step-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.3));
-}
-
-.step-card:hover .step-icon {
-  transform: rotate(15deg) scale(1.1);
-}
-
-.step-number {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-}
-
-.step-title {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-}
-
-.step-description {
-  color: #cccccc;
-  line-height: 1.6;
-}
-
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin-top: 2.5rem;
 }
 
-.case-card {
-  position: relative;
-  perspective: 800px;
-}
-
-.case-card-inner {
-  position: relative;
+.feature-item {
+  text-align: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(138, 43, 226, 0.05);
   border-radius: 1rem;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.case-card:hover .case-card-inner {
-  transform: translateY(-5px) rotateX(2deg) rotateY(2deg);
-}
-
-.avatar-container {
+  transition: all 0.3s;
   position: relative;
-  width: 60px;
-  height: 60px;
+  overflow: hidden;
 }
 
-.case-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.avatar-circle {
+.feature-item::after {
+  content: '';
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  animation: circleRotate 8s linear infinite;
+  height: 3px;
+  background: linear-gradient(90deg, #8A2BE2, #4B0082);
+  transform: scaleX(0);
+  transition: transform 0.3s;
 }
 
-@keyframes circleRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.feature-item:hover {
+  background: rgba(138, 43, 226, 0.1);
+  transform: translateY(-3px);
 }
 
-.case-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin: 2rem 0;
+.feature-item:hover::after {
+  transform: scaleX(1);
 }
 
-.stat-value {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.feature-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.3s;
 }
 
-.case-comment {
+.feature-item:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+/* Карусель модулей */
+.modules-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #8A2BE2 #1a1a1a;
+}
+
+.modules-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.modules-container::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.modules-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  border-radius: 4px;
+}
+
+.module-card {
+  min-width: 340px;
+  flex-shrink: 0;
+  background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(74, 0, 130, 0.1));
+  border-radius: 1.5rem;
+  padding: 2rem;
   position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.module-card:hover {
+  transform: translateY(-5px);
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.module-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  border-radius: 12px;
+  color: white;
+}
+
+.module-points {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.module-points li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.module-points li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #8A2BE2;
+  font-weight: bold;
+}
+
+.module-result {
+  padding: 1rem;
+  background: rgba(138, 43, 226, 0.1);
+  border-radius: 0.8rem;
+  border-left: 3px solid #8A2BE2;
+}
+
+.result-label {
+  font-weight: 600;
+  color: #BA55D3;
+}
+
+/* Домашние задания */
+.homework-content {
+  background: rgba(25, 25, 35, 0.9);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hw-examples {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.hw-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
   padding: 1.5rem;
   background: rgba(138, 43, 226, 0.05);
-  border-radius: 0.5rem;
-  font-style: italic;
+  border-radius: 1rem;
+  transition: all 0.3s;
+}
+
+.hw-card:hover {
+  background: rgba(138, 43, 226, 0.1);
+  transform: translateX(10px);
+}
+
+.hw-icon {
+  font-size: 2.2rem;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Итоговый блок */
+.final-block {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(74, 0, 130, 0.1));
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.final-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1.5rem;
+}
+
+.final-list li {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.final-list li::before {
+  content: '✔️';
+  position: absolute;
+  left: 0;
+  filter: hue-rotate(45deg);
+}
+
+/* Анимации */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes gradientPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
-  .steps-container,
-  .cases-grid {
+  .module-card {
+    min-width: 280px;
+  }
+  
+  .features-grid {
     grid-template-columns: 1fr;
   }
 }
