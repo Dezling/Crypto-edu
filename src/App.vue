@@ -30,13 +30,23 @@ import FaqSection from './components/FaqSection.vue'
 import ProfileSection from './components/ProfileSection.vue'
 import CasesComponent from './components/CasesComponent.vue'
 import ArbitrageSection from './components/ArbitrageSection.vue'
+import FullWorkSection from './components/FullWorkSection.vue'
+import JailCardSections from './components/JailCardSections.vue'
+import GarantSection from './components/GarantSection.vue'
+import ActualArgitrageSection from './components/ActualArgitrageSection.vue'
+import UpPointsSection from './components/UpPointsSection.vue'
 const sections = [
   { component: MainSection },
   {component: ArbitrageSection},
   {component: ProfileSection},
   { component: AboutSection },
+  {component: FullWorkSection},
   { component: BriefingSection },
+  { component: JailCardSections },
+  {component: GarantSection},
   {component: CasesComponent},
+  {component:ActualArgitrageSection },
+  {component: UpPointsSection},
   { component: TarifSection },
   { component: FaqSection },
   { component: SharedSection }
@@ -51,7 +61,7 @@ onMounted(() => {
   const options = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.35
+    threshold: 0.3
   }
 
   observer = new IntersectionObserver((entries) => {
