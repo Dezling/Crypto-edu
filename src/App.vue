@@ -35,6 +35,9 @@ import JailCardSections from './components/JailCardSections.vue'
 import GarantSection from './components/GarantSection.vue'
 import ActualArgitrageSection from './components/ActualArgitrageSection.vue'
 import UpPointsSection from './components/UpPointsSection.vue'
+import FreePeoductSelection from './components/FreePeoductSelection.vue'
+import WowSection from './components/WowSection.vue'
+import AskerSection from './components/AskerSection.vue'
 const sections = [
   { component: MainSection },
   {component: ArbitrageSection},
@@ -47,8 +50,12 @@ const sections = [
   {component: CasesComponent},
   {component:ActualArgitrageSection },
   {component: UpPointsSection},
+  {component: FreePeoductSelection},
   { component: TarifSection },
+  {component: AskerSection},
+  {component: WowSection},
   { component: FaqSection },
+
   { component: SharedSection }
 ]
 
