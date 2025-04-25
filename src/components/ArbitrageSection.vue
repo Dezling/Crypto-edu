@@ -26,6 +26,19 @@
             <div class="price sell">96₽</div>
           </div>
         </div>
+      <div class="animated-description">
+          <p class="glowing-text">
+            <span class="highlight">Арбитраж</span> — это искусство зарабатывать на разнице цен, 
+            которая есть на <span class="gradient-accent">любом рынке</span>, в том числе рынке криптовалют. 
+            <span class="animated-underline">Например</span>, банк покупает доллар за 90 ₽, 
+            а продаёт за 100 ₽, и вы, вместо того чтобы возмущаться, находите банк, где 
+            купить можно за 92 ₽, продаёте обратно первому за 96 ₽ — и так по кругу, пока 
+            спред не исчезнет или ваша совесть не напомнит, что вы, по сути, перепродаёте воздух. 
+            <span class="focus-text"> Главное </span> — уметь делать это <span class="gradient-accent">эффективнее </span>конкурентов для того, 
+            что забрать как можно больше сливок.
+          </p>
+        </div>
+
 
         <div class="step-cards">
           <div 
@@ -59,7 +72,7 @@ const steps = ref([
     icon: 'M21 21l-3.5-3.5M17 10a7 7 0 11-14 0 7 7 0 0114 0z'
   },
   {
-    title: 'Параллельные сделки',
+    title: 'Совершаем сделку',
     description: 'Одновременная покупка и продажа на разных платформах',
     icon: 'M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4'
   },
@@ -290,6 +303,178 @@ onMounted(() => {
   color: #aaa;
   line-height: 1.6;
   font-size: 0.95rem;
+}
+.animated-description {
+  max-width: 900px;
+  margin: 5rem auto;
+  position: relative;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.glowing-text {
+  font-size: 1.25rem;
+  line-height: 1.9;
+  text-align: justify;
+  color: rgba(255,255,255,0.92);
+  padding: 3rem;
+  border-radius: 24px;
+  background: linear-gradient(45deg, 
+    rgba(30, 30, 45, 0.8) 0%, 
+    rgba(35, 35, 50, 0.7) 100%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  transform: rotateX(3deg) translateZ(50px);
+  animation: 
+    text-float 8s ease-in-out infinite,
+    border-glow 4s ease-in-out infinite;
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.15),
+    0 0 40px rgba(138, 43, 226, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.glowing-text::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(138, 43, 226, 0.1) 0%,
+    rgba(186, 85, 211, 0.05) 50%,
+    rgba(138, 43, 226, 0.1) 100%
+  );
+  animation: gradient-flow 12s linear infinite;
+  z-index: -1;
+}
+
+@keyframes text-float {
+  0%, 100% { 
+    transform: rotateX(3deg) translateZ(50px) translateY(0);
+  }
+  50% { 
+    transform: rotateX(1deg) translateZ(50px) translateY(-10px);
+  }
+}
+@keyframes gradient-flow {
+  0% { transform: translate(-25%, -25%) rotate(0deg); }
+  100% { transform: translate(-25%, -25%) rotate(360deg); }
+}
+@keyframes border-glow {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 32px rgba(0,0,0,0.15),
+      0 0 40px rgba(138, 43, 226, 0.1);
+    border-color: rgba(138, 43, 226, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 8px 40px rgba(0,0,0,0.2),
+      0 0 60px rgba(138, 43, 226, 0.25);
+    border-color: rgba(138, 43, 226, 0.5);
+  }
+}
+
+.highlight {
+  color: #fff;
+  font-weight: 600;
+  position: relative;
+  background: linear-gradient(90deg, #8A2BE2 0%, #BA55D3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 4px;
+  animation: highlight-pulse 3s ease infinite;
+}
+
+
+@keyframes highlight-pulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(138, 43, 226, 0); }
+  50% { text-shadow: 0 0 15px rgba(138, 43, 226, 0.4); }
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8A2BE2, transparent);
+  animation: line-extend 2.5s infinite;
+}
+
+.gradient-accent {
+  position: relative;
+  font-weight: 500;
+  background: linear-gradient(45deg, #BA55D3, #40E0D0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-underline {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8A2BE2, #40E0D0);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated-underline::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #8A2BE2;
+  transition: width 0.4s ease;
+}
+
+.animated-underline:hover::before {
+  width: 100%;
+}
+
+.focus-text {
+  display: inline-block;
+  animation: focus-pulse 2s infinite;
+}
+
+@keyframes line-extend {
+  0% { width: 0; opacity: 0; }
+  50% { width: 100%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}
+
+
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+  .glowing-text {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .animated-description {
+    margin: 3rem auto;
+  }
 }
 
 @media (max-width: 768px) {

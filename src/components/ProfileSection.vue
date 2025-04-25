@@ -1,29 +1,56 @@
 <template>
-  
-  <section id="profile" class="profile-card-container">
-    <div class="profile-card">
-      <div class="card-border-glow"></div>
-      <div class="card-content">
-        <h3 class="card-subtitle">
-          <span class="text-gradient">КТО Я ТАКОЙ?</span>
-        </h3>
-        <h2 class="card-title">Миллионер, плейбой, филантроп</h2>
-          <div class="photo-wrapper">
+  <section id="profile" class="profile-section">
+    <div class="content-wrapper">
+      <h2 class="section-title">
+        <span class="gradient-text">Почему</span>
+        <span class="subtitle">именно я твой наставник?</span>
+      </h2>
+
+      <div class="profile-content">
+        <div class="photo-column">
+          <!-- Первое фото -->
+          <div class="photo-container">
             <img 
-              src="@/assets/mon.jpg" 
-              alt="Фото с деньгами"
-              class="animated-photo"
+              src="/images/mon.jpg" 
+              alt="Фото профиля"
+              class="profile-photo"
             >
-            <div class="photo-glow"></div>
+            <div class="photo-overlay"></div>
           </div>
 
-        <div class="card-text">
-          <p v-for="(paragraph, index) in paragraphs" :key="index" class="animated-paragraph">
-            {{ paragraph }}
-          </p>
+          <!-- Второе фото -->
+          <div class="photo-container secondary-photo">
+            <img 
+              src="/images/monney.jpg" 
+              alt="Фото профиля 2"
+              class="profile-photo"
+            >
+            <div class="photo-overlay"></div>
+          </div>
+        <div class="photo-container third-photo">
+            <img 
+              src="/images/mon2.jpg" 
+              alt="Фото профиля 2"
+              class="profile-photo"
+            >
+            <div class="photo-overlay"></div>
+          </div>
+        </div>
+        <div class="text-column">
+          <h3 class="experience-title">5+ лет в криптоарбитраже</h3>
+
+          <div class="paragraphs-container">
+            <p 
+              v-for="(paragraph, index) in paragraphs" 
+              :key="index"
+              class="animated-paragraph"
+            >
+              <span class="paragraph-number">0{{ index + 1 }}</span>
+              <span v-html="highlightImportantWords(paragraph)"></span>
+            </p>
+          </div>
         </div>
       </div>
-      <div class="card-particles"></div>
     </div>
   </section>
 </template>
@@ -33,249 +60,233 @@ export default {
   data() {
     return {
       paragraphs: [
-        'Я занимаюсь арбитражем уже более 3-ех лет. За это время я пробил много потолков, но и дна касался. Мне точно есть чем поделиться и чему тебя научить.',
-        // 'Я занимаюсь арбитражем уже более 3ех лет. За это время я пробил много потолков, но и дна касался. Мне точно есть чем поделиться и чему тебя научить.'
+        'Более 5 лет в криптовалютном арбитраже и управлении международными проектами. Моя команда генерирует стабильную чистую прибыль от $10 000 в месяц, используя проверенные стратегии и кастомные инструменты анализа.',
+        'За моими плечами: Организация арбитражных операций в 10+ странах, включая запуск обменника в Таиланде с ежемесячным оборотом $500 000+. Глубокое понимание регуляторных нюансов и рисков (от 115-ФЗ до азиатских compliance-требований). Практические кейсы: от P2P-связок до оптимизации внутренних процессов при построении собственной команды на криптовалютном поприще.',
+        'Так почему же? Вы получаете не теорию, а <span class="highlight">рабочие схемы</span>, которые прошли проверку в условиях реального рынка. Моя цель — сделать так, чтобы ваши ошибки стали частью моего опыта, а не ваших потерь.',
+        'Я начинал с нуля, как и многие: <span class="highlight">первые сделки</span> проводил с минимальным капиталом, сталкивался с кассовыми разрывами и ошибками, из-за которых терял до 70% депозита. Этот опыт закалил меня. Сегодня, спустя более 5 лет я руковожу командой из 10+ специалистов, которая ежемесячно приносит <span class="highlight">более миллиона рублей</span> в карман.',
+        'Почему вам стоит довериться: Я прошел путь от потерь к стабильности и знаю, как превратить даже провал в точку роста. Мои уроки — это не только стратегии, но и готовые решения для избежания кассовых разрывов, оптимизации налогов и работы с регуляторами. Вы получите доступ к инструментам, которые позволят избежать моих прошлых ошибок и стартовать с уверенностью.',
+        'Моя карьера в криптоарбитраже началась с череды <span class="highlight">неудач</span>: кассовые разрывы, блокировки счетов и убытки, которые казались фатальными. Но именно эти провалы стали фундаментом для моего успеха. Сегодня моя команда генерирует $10 000+ в месяц, у меня очень активное и вовлечённое коммьюнити, а некоторые из учеников уже близки к тому, чтобы перерасти «сенсея».',
+        'Я не скрываю подводных камней — покажу, как их обходить. Мы разберем только реальные кейсы и учимся на лучших примерах. Вы научитесь <span class="highlight">прогнозировать риски</span>, работать с ликвидностью и масштабироваться даже в условиях нестабильности. Моя цель — чтобы ваши стартовые трудности стали историей, а не повторением чужих ошибок.'
       ]
+    }
+  },
+  methods: {
+    highlightImportantWords(paragraph) {
+      return paragraph.replace(/(рабочие схемы|более миллиона рублей|неудач|прогнозировать риски)/g, 
+      '<span class="highlight">$1</span>');
     }
   }
 }
 </script>
 
 <style scoped>
-.profile-card-container {
-  max-width: 1200px;
-  margin: 4rem auto;
-  padding: 0 2rem;
-}
-
-.profile-card {
+.profile-section {
+  padding: 8rem 2rem;
   position: relative;
-  background: rgba(15, 15, 15, 0.3);
-  border-radius: 20px;
-  padding: 2.5rem;
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(138, 43, 226, 0.2);
-  transform: translateY(30px);
-  opacity: 0;
-  animation: cardEntrance 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  animation-delay: 0.3s;
   overflow: hidden;
 }
 
-@keyframes cardEntrance {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.photo-wrapper {
+
+.section-title {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 5rem;
+  line-height: 1;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #000, #8A2BE2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+.subtitle {
+  display: block;
+  font-size: 1.8rem;
+  color: #888;
+  margin-top: 1rem;
+  letter-spacing: 3px;
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.photo-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.photo-container {
   position: relative;
+  height: 600px;
   border-radius: 15px;
   overflow: hidden;
   transform: translateX(-20px);
   opacity: 0;
-  animation: photoSlide 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation: slideIn 1s forwards;
+  animation-delay: 0.3s;
+}
+.photo-container.secondary-photo {
   animation-delay: 0.5s;
-  margin: 2rem 0;
-}
-@keyframes photoSlide {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-.animated-photo {
-  width: 40%;
-  height: 500px;
-  object-fit: cover;
-  position: relative;
+  margin-left: 2rem;
+  transform: rotate(3deg);
   z-index: 1;
-  transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-  border: 2px solid transparent;
 }
-
-.animated-photo:hover {
-  transform: scale(1.02);
+.photo-container.third-photo {
+  animation-delay: 0.5s;
+  margin-left: 2rem;
+  transform: rotate(3deg);
+  z-index: 1;
 }
-.animated-photo::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: linear-gradient(
-    45deg,
-    #8A2BE2,
-    #BA55D3,
-    transparent
-  );
-  z-index: -1;
-  border-radius: 20px;
-  animation: frameRotate 8s linear infinite;
-}
-.animated-photo::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid rgba(138, 43, 226, 0.3);
-  border-radius: 15px;
-  z-index: 2;
-}
-@keyframes frameRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.photo-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
+.profile-photo {
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(138, 43, 226, 0.4) 0%,
-    transparent 70%
-  );
-  animation: glowPulse 3s infinite;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-.card-border-glow {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(
-    45deg,
-    rgba(138, 43, 226, 0),
-    rgba(138, 43, 226, 0.3),
-    rgba(138, 43, 226, 0)
-  );
-  border-radius: 22px;
-  z-index: -1;
-  animation: borderGlow 3s linear infinite;
-}
-
-@keyframes borderGlow {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.7; }
-  100% { opacity: 0.3; }
-}
-
-.card-subtitle {
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-}
-
-.text-gradient {
-  background: linear-gradient(45deg, #8A2BE2, #FFFFFF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.card-title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(45deg, #fff, #8A2BE2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.card-text {
-  position: relative;
-  padding: 2rem;
-  margin: 2rem auto 0;
-  max-width: 800px;
-  background: rgba(20, 20, 30, 0.6);
-  border-radius: 15px;
-  border-left: 4px solid #8A2BE2;
-  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
-}
-
-.card-text::before {
-  content: '';
+.photo-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 15px;
-  border: 1px solid rgba(138, 43, 226, 0.2);
-  pointer-events: none;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    transparent 100%
+  );
+  mix-blend-mode: multiply;
 }
+
+.experience-title {
+  font-size: 1.8rem;
+  color: #8A2BE2;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(138, 43, 226, 0.3);
+}
+
+.paragraphs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 .animated-paragraph {
-  position: relative;
-  padding: 1rem;
   font-size: 1.1rem;
   line-height: 1.8;
-  margin: 1rem 0;
+  color: rgba(255,255,255,0.9);
   opacity: 0;
   transform: translateY(20px);
   animation: textReveal 0.8s forwards;
+  position: relative;
+  padding-left: 50px;
+}
+
+.paragraph-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgba(138, 43, 226, 0.3);
+}
+
+.highlight {
+  color: #FFDD57; /* Привлекательный цвет для выделения */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.highlight:hover {
+  color: #FFC107; /* Цвет при наведении */
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes textReveal {
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
-.animated-paragraph:nth-child(1) { animation-delay: 0.5s; }
-.animated-paragraph:nth-child(2) { animation-delay: 0.8s; }
+.animated-paragraph:nth-child(1) { animation-delay: 0.4s; }
+.animated-paragraph:nth-child(2) { animation-delay: 0.6s; }
+.animated-paragraph:nth-child(3) { animation-delay: 0.8s; }
+.animated-paragraph:nth-child(4) { animation-delay: 1.0s; }
+.animated-paragraph:nth-child(5) { animation-delay: 1.2s; }
+.animated-paragraph:nth-child(6) { animation-delay: 1.4s; }
+.animated-paragraph:nth-child(7) { animation-delay: 1.6s; }
 
-.card-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    rgba(138, 43, 226, 0.1) 0%,
-    transparent 70%
-  );
-  animation: particleFlow 20s linear infinite;
-}
-
-@keyframes particleFlow {
-  from { transform: rotate(0deg) scale(1); }
-  to { transform: rotate(360deg) scale(1.2); }
+@media (max-width: 1024px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .photo-column {
+    height: auto;
+    margin-bottom: 4rem;
+  }
+  
+  .photo-container {
+    height: 500px;
+    top: 80px;
+  }
 }
 
 @media (max-width: 768px) {
-  .profile-card {
-    padding: 1.5rem;
-    margin: 0 1rem;
+  .section-title {
+    font-size: 3rem;
   }
   
-  .card-title {
-    font-size: 2rem;
+  .subtitle {
+    font-size: 1.4rem;
   }
   
-  .card-text {
+  .animated-paragraph {
+    padding-left: 40px;
     font-size: 1rem;
+  }
+  
+  .paragraph-number {
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 480px) {
-  .card-title {
-    font-size: 1.8rem;
+  .profile-section {
+    padding: 4rem 1rem;
   }
   
-  .card-subtitle {
-    font-size: 1rem;
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .photo-container {
+    height: 400px;
+  }
+  
+  .experience-title {
+    font-size: 1.4rem;
   }
 }
 </style>

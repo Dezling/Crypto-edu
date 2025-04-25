@@ -1,31 +1,38 @@
 <template>
   <section class="hero-section">
-       <div class="coin-background">
-      <img src="/src/assets/1.svg" class="coin " alt="coin">
+    <div class="coin-background">
+      <img src="/src/assets/1.svg" class="coin" alt="coin">
     </div>
     <div class="content-wrapper">
-     <div class="text-content">
-      <h1 class="title">
-        <span class="gradient-text">Обучение</span><br>
-        <div class="animated-slogan">
-          <span class="word-accent">Арбитражу</span> 
-          <span class="word-accent"></span> 
-          <span class="word-accent">Криптовалют</span>
+      <div class="text-content">
+        <h1 class="title">
+          <span class="gradient-text">ОБУЧЕНИЕ</span><br>
+          <span class="gradient-text">АРБИТРАЖУ</span>
+        </h1>
+
+        <div class="features-list">
+          <div 
+            v-for="(feature, index) in features"
+            :key="index" 
+            class="feature-item"
+          >
+            <div class="feature-number">{{ index + 1 }}</div>
+            <div class="feature-text">{{ feature }}</div>
+          </div>
         </div>
-      </h1>
+
+        <div class="dynamic-description">
+          <div class="features-grid">
+            <div class="feature-badge">5+ лет практики</div>
+            <div class="feature-badge">1000+ учеников</div>
+          </div>
+          <button class="cta-button">
+            НАЧАТЬ ОБУЧЕНИЕ
+            <div class="hover-line"></div>
+          </button>
+        </div>
+      </div>
       
-      <div class="dynamic-description">
-        <p>СТАНЬ АКУЛОЙ <span class="text-flare">АРБИТРАЖНОЙ ТОРГОВЛИ</span></p>
-        <div class="features-grid">
-          <div class="feature-badge">5+ лет практики</div>
-          <div class="feature-badge">1000+ учеников</div>
-        </div>
-      </div>
-        <button class="cta-button">
-          Я ГОТОВ НАЧАТЬ
-          <div class="hover-line"></div>
-        </button>
-      </div>
       <div class="visual-element">
         <div class="blockchain-animation">
           <div 
@@ -38,6 +45,20 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      features: [
+        "ТОЛЬКО АКТУАЛЬНАЯ ТЕОРИЯ И ПРАКТИЧЕСКИЙ РЕЗУЛЬТАТ, БЕЗ «ПРОБНЫХ» ШАГОВ",
+        "ОБУЧЕНИЕ НАВЫКУ, А НЕ МАГИИ ЗАРАБОТКА НА АРБИТРАЖЕ КРИПТОВАЛЮТ",
+        "ФОРМИРОВАНИЕ ФУНДАМЕНТАЛЬНЫХ НАВЫКОВ ДЛЯ ПОЛУЧЕНИЯ ОСЯЗАЕМОЙ ПРИБЫЛИ"
+      ]
+    }
+  }
+}
+</script>
 
 <style scoped>
 .hero-section {
@@ -146,12 +167,55 @@
 }
 
 .title {
-  font-size: 5rem;
+  font-size: 3.5rem;
   line-height: 1.05;
   margin-bottom: 1.5rem;
   color: #FFFFFF;
 }
+.features-list {
+  margin: 1rem 0;
+}
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 20px;
+  background: rgba(15, 15, 15, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
 
+.feature-item:hover {
+  transform: translateX(10px);
+  background: rgba(138, 43, 226, 0.1);
+}
+
+.feature-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  min-width: 60px;
+  margin-right: 1.5rem;
+}
+
+.feature-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #FFFFFF;
+  padding-right: 2rem;
+}
+
+.dynamic-description {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
 .gradient-text {
   background: linear-gradient(45deg, #8A2BE2, #FFFFFF);
   -webkit-background-clip: text;

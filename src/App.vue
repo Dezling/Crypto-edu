@@ -40,51 +40,63 @@ import WowSection from './components/WowSection.vue'
 import AskerSection from './components/AskerSection.vue'
 const sections = [
   { component: MainSection },
-  {component: ArbitrageSection},
-  {component: ProfileSection},
+  { component: ArbitrageSection },
+  { component: ProfileSection },
   { component: AboutSection },
-  {component: FullWorkSection},
+  { component: FullWorkSection },
   { component: BriefingSection },
   { component: JailCardSections },
-  {component: GarantSection},
-  {component: CasesComponent},
-  {component:ActualArgitrageSection },
-  {component: UpPointsSection},
-  {component: FreePeoductSelection},
+  { component: GarantSection },
+  { component: CasesComponent },
+  { component: ActualArgitrageSection },
+  { component: UpPointsSection },
+  { component: FreePeoductSelection },
   { component: TarifSection },
-  {component: AskerSection},
-  {component: WowSection},
+  { component: AskerSection },
+  { component: WowSection },
   { component: FaqSection },
-
   { component: SharedSection }
 ]
 
 const sectionRefs = ref([])
 const activeIndex = ref(0)
+let scrollTimeout = null
 
-let observer = null
+const getVisibleSection = () => {
+  const scrollPosition = window.scrollY + window.innerHeight / 2
+  let closestSection = 0
+  let minDistance = Infinity
+
+  sectionRefs.value.forEach((section, index) => {
+    if(!section) return
+    const rect = section.getBoundingClientRect()
+    const sectionCenter = rect.top + window.scrollY + rect.height / 2
+    const distance = Math.abs(scrollPosition - sectionCenter)
+
+    if(distance < minDistance) {
+      minDistance = distance
+      closestSection = index
+    }
+  })
+
+  return closestSection
+}
+
+const handleScroll = () => {
+  if(scrollTimeout) window.cancelAnimationFrame(scrollTimeout)
+  scrollTimeout = window.requestAnimationFrame(() => {
+    activeIndex.value = getVisibleSection()
+  })
+}
 
 onMounted(() => {
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.3
-  }
-
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const index = sectionRefs.value.findIndex(ref => ref === entry.target)
-      if (entry.isIntersecting) {
-        activeIndex.value = index
-      }
-    })
-  }, options)
-
-  sectionRefs.value.forEach(el => observer.observe(el))
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll() // Инициализация при загрузке
 })
 
 onBeforeUnmount(() => {
-  if (observer) observer.disconnect()
+  window.removeEventListener('scroll', handleScroll)
+  if(scrollTimeout) window.cancelAnimationFrame(scrollTimeout)
 })
 </script>
 
@@ -104,33 +116,54 @@ body {
 
 .app {
   min-height: 100vh;
+  perspective: 1000px;
 }
 
 .scroll-section {
+  position: relative;
   min-height: 100vh;
   padding: 6rem 2rem 2rem;
   transition: 
-    filter 0.6s ease-out,
-    opacity 0.6s ease-out;
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
 }
 
-/* Активная секция */
-.scroll-section.active-section {
-  filter: blur(0);
-  opacity: 1;
+.scroll-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: -1;
 }
 
-/* Предыдущая и следующая секции */
-.scroll-section.prev-section,
-.scroll-section.next-section {
-  filter: blur(8px);
-  opacity: 0.7;
-}
-
-/* Все остальные секции */
-.scroll-section:not(.active-section):not(.prev-section):not(.next-section) {
-  filter: blur(12px);
+.scroll-section:not(.active-section) {
+  transform: translateY(20px) scale(0.98);
   opacity: 0.4;
+  filter: blur(8px);
+}
+
+.scroll-section.active-section {
+  transform: none;
+  opacity: 1;
+  filter: blur(0);
+}
+
+.scroll-section.active-section::before {
+  opacity: 0.3;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 NavBar {
@@ -141,5 +174,29 @@ NavBar {
   z-index: 1000;
   background: rgba(15, 15, 15, 0.95);
   backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .scroll-section {
+    padding: 4rem 1rem 1rem;
+    min-height: auto;
+    height: auto !important;
+  }
+  
+  .scroll-section:not(.active-section) {
+    transform: translateY(10px) scale(0.98);
+    filter: blur(4px);
+    opacity: 0.6;
+  }
+  
+  .scroll-section::before {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  .scroll-section {
+    -webkit-transform: translateZ(0);
+  }
 }
 </style>
