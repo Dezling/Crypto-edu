@@ -1,117 +1,109 @@
 <template>
   <section class="steps-section">
-    <div class="decorative-elements">
-      <!-- Декоративные элементы без изменений -->
-    </div>
-
     <div class="content-wrapper">
-      <div class="text-content">
-        <!-- Секция "О подходе" -->
-        <div class="approach-section">
-          <h2 class="section-title">
-            <span class="gradient-text">Профессиональный подход</span> — 
-            <span class="animated-underline">основа вашего успеха</span>
-          </h2>
+      <!-- Секция подхода -->
+      <div class="approach-section">
+        <h2 class="section-title">
+          <span class="gradient-text">Системный подход</span> к обучению
+        </h2>
 
-          <div class="approach-content">
-            <div class="approach-card gradient-border">
-              <h3>📈 Мой подход к обучению</h3>
-              <p class="emphasis-text">
-                Для меня обучение - это детище. Каждый модуль продуман как дополнение к базе: 
-                с каждым уроком мы укрепляем структуру и увеличиваем доход.
-              </p>
-              <div class="features-grid">
-                <div class="feature-item">
-                  <div class="feature-icon">🎯</div>
-                  <h4>Прямые эфиры</h4>
-                  <p>Интерактивные занятия с живым общением</p>
-                </div>
-                <div class="feature-item">
-                  <div class="feature-icon">📚</div>
-                  <h4>Материалы</h4>
-                  <p>Конспекты, чек-листы и шаблоны после каждого урока</p>
-                </div>
-                <div class="feature-item">
-                  <div class="feature-icon">💼</div>
-                  <h4>Практика</h4>
-                  <p>Реальные кейсы и задания для немедленного применения</p>
-                </div>
-              </div>
-            </div>
+        <div class="approach-grid">
+          <div class="approach-card">
+            <svg class="approach-icon" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+            </svg>
+            <h3>Структурированная программа</h3>
+            <p>Пошаговое погружение от основ до профессиональных техник</p>
+          </div>
+
+          <div class="approach-card">
+            <svg class="approach-icon" viewBox="0 0 24 24">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14h-2V9h-2V7h4v10z"/>
+            </svg>
+            <h3>Практические кейсы</h3>
+            <p>Реальные задачи из текущей рыночной практики</p>
+          </div>
+
+          <div class="approach-card">
+            <svg class="approach-icon" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
+            </svg>
+            <h3>Контроль прогресса</h3>
+            <p>Персональная обратная связь по каждому этапу</p>
           </div>
         </div>
+      </div>
 
-        <!-- Карусель с модулями -->
-        <div class="modules-carousel">
-          <h2 class="section-title">
-            <span class="gradient-text">Программа обучения</span> — 
-            <span class="animated-underline">пошаговый путь к мастерству</span>
-          </h2>
+      <!-- Программа обучения -->
+      <div class="modules-section">
+        <h2 class="section-title">
+          <span class="gradient-text">Программа</span> обучения
+        </h2>
 
-          <div class="modules-container" ref="carousel" @wheel.prevent="handleWheel">
-            <div 
-              v-for="(module, index) in modules" 
-              :key="index" 
-              class="module-card"
-            >
-              <div class="module-card-inner">
-                <div class="module-header">
-                  <span class="module-number">{{-1 +  index + 1 }}</span>
-                  <h3 class="module-title">{{ module.title }}</h3>
-                </div>
-                <div class="module-content">
-                  <ul class="module-points">
-                    <li v-for="(point, i) in module.points" :key="i"> {{ point }}</li>
-                  </ul>
-                  <div class="module-result">
-                    <span class="result-label">Результат:</span>
-                    {{ module.result }}
-                  </div>
-                </div>
-              </div>
+        <div class="modules-grid" 
+             ref="modulesContainer" 
+             @wheel.prevent="handleWheel">
+          <div 
+            v-for="(module, index) in modules" 
+            :key="index" 
+            class="module-card"
+          >
+            <div class="module-header">
+              <div class="module-number">0{{ index + 1 }}</div>
+              <h3>{{ module.title }}</h3>
             </div>
-          </div>
-        </div>
-
-        <!-- Секция с домашними заданиями -->
-        <div class="homework-section">
-          <div class="homework-content gradient-border">
-            <h3>📌 Домашние задания</h3>
-            <p class="emphasis-text">
-              Практические задачи, которые приближают вас к реальным заработкам:
-            </p>
-            <div class="hw-examples">
-              <div v-for="(hw, index) in homeworks" :key="index" class="hw-card">
-                <div class="hw-icon">{{ hw.emoji }}</div>
-                <div class="hw-text">
-                  <h4>{{ hw.title }}</h4>
-                  <p>{{ hw.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Итоговый блок -->
-        <div class="final-block">
-          <div class="final-content">
-            <h3>🚀 Итог обучения</h3>
-            <p class="emphasis-text">
-              После прохождения программы вы будете обладать знаниями, 
-              которых нет у 80% участников рынка. Мои ученики:
-            </p>
-            <ul class="final-list">
-              <li> Создают устойчивые арбитражные конструкции</li>
-              <li> Работают с международными рынками</li>
-              <li> Масштабируют бизнес в 3-5 раз</li>
-              <li> Открывают собственные обменные пункты</li>
+            
+            <ul class="module-points">
+              <li v-for="(point, i) in module.points" :key="i">
+                <svg class="bullet-icon" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                {{ point }}
+              </li>
             </ul>
+
+            <div class="module-result">
+              <svg class="result-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              <span>{{ module.result }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Практические задания -->
+      <div class="practice-section">
+        <h2 class="section-title">
+          <span class="gradient-text">Практика</span> — основа навыков
+        </h2>
+
+        <div class="practice-cards">
+          <div class="practice-card">
+            <div class="card-header">
+              <svg class="card-icon" viewBox="0 0 24 24">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+              </svg>
+              <h3>Работа с реальными данными</h3>
+            </div>
+            <p>Анализ текущих рыночных ситуаций и арбитражных возможностей</p>
+          </div>
+
+          <div class="practice-card">
+            <div class="card-header">
+              <svg class="card-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+              </svg>
+              <h3>Пошаговые инструкции</h3>
+            </div>
+            <p>Четкие алгоритмы действий для быстрого старта</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+
 
 <script setup>
 import { ref } from 'vue'
@@ -169,44 +161,37 @@ const modules = ref([
   // Добавьте остальные модули по аналогии
 ]);
 
-const homeworks = ref([
-  {
-    emoji: '📝',
-    title: 'Регистрация на платформах',
-    description: 'Подготовка рабочих инструментов для старта'
-  },
-  // Добавьте остальные задания
-]);
 
-const carousel = ref(null)
+
+const modulesContainer = ref(null)
 
 const handleWheel = (e) => {
-  if (carousel.value) {
-    const delta = Math.sign(e.deltaY)
-    carousel.value.scrollLeft += delta * 100
+  if (modulesContainer.value) {
+    const delta = e.deltaY || e.detail || e.wheelDelta
+    modulesContainer.value.scrollLeft += delta * 0.5
   }
 }
 </script>
 <style scoped>
-/* Базовые стили */
+/* Base styles */
 .steps-section {
+  padding: 6rem 1rem;
   position: relative;
-  padding: 6rem 0;
   overflow: hidden;
 }
 
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 2;
 }
 
+/* Typography */
 .section-title {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   text-align: center;
   margin-bottom: 4rem;
+  color: white;
+  font-weight: 600;
   line-height: 1.3;
 }
 
@@ -214,179 +199,108 @@ const handleWheel = (e) => {
   background: linear-gradient(45deg, #8A2BE2, #BA55D3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-flow 8s ease infinite;
 }
 
-.animated-underline {
-  position: relative;
-  display: inline-block;
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.animated-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+/* Approach Section */
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 6rem;
 }
 
-.section-title:hover .animated-underline::after {
-  transform: scaleX(1);
-}
-
-/* Стили для карточек */
 .approach-card {
-  background: rgba(25, 25, 35, 0.9);
-  padding: 2.5rem;
-  border-radius: 1.5rem;
-  margin-bottom: 4rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.approach-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(45deg, #8A2BE2, #4B0082);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  padding: 2rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .approach-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.feature-item {
-  text-align: center;
-  padding: 2rem;
-  background: rgba(138, 43, 226, 0.05);
-  border-radius: 1rem;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
-  transform: scaleX(0);
-  transition: transform 0.3s;
-}
-
-.feature-item:hover {
-  background: rgba(138, 43, 226, 0.1);
-  transform: translateY(-3px);
-}
-
-.feature-item:hover::after {
-  transform: scaleX(1);
-}
-
-.feature-icon {
-  font-size: 2.8rem;
+.approach-icon {
+  width: 48px;
+  height: 48px;
+  fill: #8A2BE2;
   margin-bottom: 1.5rem;
-  display: inline-block;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
-.feature-item:hover .feature-icon {
+.approach-card:hover .approach-icon {
   transform: scale(1.1);
 }
 
-/* Карусель модулей */
-.modules-container {
+.approach-card h3 {
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.approach-card p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Modules Section */
+.modules-grid {
   display: flex;
   overflow-x: auto;
   gap: 2rem;
   padding: 1.5rem 0;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #8A2BE2 #1a1a1a;
-}
-
-.modules-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.modules-container::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 4px;
-}
-
-.modules-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #8A2BE2, #4B0082);
-  border-radius: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .module-card {
-  min-width: 340px;
+  min-width: 400px;
   flex-shrink: 0;
-  background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(74, 0, 130, 0.1));
-  border-radius: 1.5rem;
   padding: 2rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s;
-}
-
-.module-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(45deg, #8A2BE2, #4B0082);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  background: rgba(255,255,255,0.03);
+  border-left: 4px solid #8A2BE2;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
 }
 
 .module-card:hover {
-  transform: translateY(-5px);
+  background: rgba(255,255,255,0.05);
+}
+.modules-section {
+  margin-top: 6rem;
+  padding: 1rem; /* Опционально: добавьте отступы для визуального комфорта */
 }
 
 .module-header {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .module-number {
-  font-size: 2.2rem;
-  font-weight: 700;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  background: #8A2BE2;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-  border-radius: 12px;
   color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .module-points {
@@ -396,135 +310,163 @@ const handleWheel = (e) => {
 }
 
 .module-points li {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
   margin-bottom: 1rem;
-  padding-left: 1.5rem;
-  position: relative;
-  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.module-points li::before {
-  content: '▹';
-  position: absolute;
-  left: 0;
-  color: #8A2BE2;
-  font-weight: bold;
+.bullet-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: #8A2BE2;
+  margin-top: 4px;
 }
 
 .module-result {
-  padding: 1rem;
-  background: rgba(138, 43, 226, 0.1);
-  border-radius: 0.8rem;
-  border-left: 3px solid #8A2BE2;
-}
-
-.result-label {
-  font-weight: 600;
-  color: #BA55D3;
-}
-
-/* Домашние задания */
-.homework-content {
-  background: rgba(25, 25, 35, 0.9);
-  padding: 2.5rem;
-  border-radius: 1.5rem;
-  margin-top: 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hw-examples {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.hw-card {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
-  padding: 1.5rem;
-  background: rgba(138, 43, 226, 0.05);
-  border-radius: 1rem;
-  transition: all 0.3s;
-}
-
-.hw-card:hover {
-  background: rgba(138, 43, 226, 0.1);
-  transform: translateX(10px);
-}
-
-.hw-icon {
-  font-size: 2.2rem;
-  min-width: 50px;
-  text-align: center;
-}
-
-/* Итоговый блок */
-.final-block {
-  margin-top: 4rem;
-  padding: 3rem;
-  background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(74, 0, 130, 0.1));
-  border-radius: 1.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.final-block::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(45deg, #8A2BE2, #4B0082);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-.final-list {
-  list-style: none;
-  padding-left: 0;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(138,43,226,0.1);
+  border-radius: 8px;
+  color: #BA55D3;
+  font-size: 0.9rem;
   margin-top: 1.5rem;
 }
 
-.final-list li {
+.result-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Practice Section */
+.practice-section {
+  margin-top: 6rem;
+}
+
+.practice-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.practice-card {
+  padding: 2rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+}
+
+.practice-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
-  padding-left: 2rem;
-  position: relative;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  fill: #8A2BE2;
+  flex-shrink: 0;
+}
+
+.practice-card h3 {
+  color: white;
+  margin-bottom: 0.5rem;
   font-size: 1.1rem;
+  font-weight: 500;
 }
 
-.final-list li::before {
-  content: '✔️';
-  position: absolute;
-  left: 0;
-  filter: hue-rotate(45deg);
+.practice-card p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
-/* Анимации */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Scrollbar Styling */
+.modules-grid::-webkit-scrollbar {
+  height: 8px;
 }
 
-@keyframes gradientPulse {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.modules-grid::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+
+.modules-grid::-webkit-scrollbar-thumb {
+  background: #8A2BE2;
+  border-radius: 4px;
+}
+
+.modules-grid::-webkit-scrollbar-thumb:hover {
+  background: #BA55D3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .approach-card,
+  .practice-card {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .steps-section {
+    padding: 4rem 1rem;
+  }
+  
   .section-title {
     font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .approach-grid,
+  .practice-cards {
+    grid-template-columns: 1fr;
   }
   
   .module-card {
-    min-width: 280px;
+    padding: 1.5rem;
   }
   
-  .features-grid {
-    grid-template-columns: 1fr;
+  .module-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .approach-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .practice-card {
+    padding: 1.5rem 1rem;
   }
 }
 </style>
