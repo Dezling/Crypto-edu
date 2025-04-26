@@ -133,7 +133,14 @@ const tariffs = ref([
   animation: slideUp 1s ease forwards;
   animation-delay: 0.2s;
 }
+.gradient-text {
+ background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+.animated-underline::after {
+ background: linear-gradient(45deg, #8A2BE2, #BA55D3);}
 .duration-info {
   display: flex;
   justify-content: center;

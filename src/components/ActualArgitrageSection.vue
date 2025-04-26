@@ -14,8 +14,8 @@
 
     <div class="content-wrapper">
       <h2 class="section-title">
-        <span class="gradient-text">Арбитраж - </span> 
-        <span class="animated-underline">технология будущего</span>
+        <span class="gradient-text">Арбитраж — </span> 
+        <span class="animated-underline">вечный двигатель крипторынка</span>
       </h2>
 
       <div class="relevance-grid">
@@ -31,11 +31,24 @@
               <svg class="card-icon" v-html="item.icon"></svg>
             </div>
             <h3 class="card-title">{{ item.title }}</h3>
-            <p class="card-text">{{ item.text }}</p>
-            <div class="card-stats" v-if="item.stats">
-              <div class="stat-item" v-for="(stat, sIndex) in item.stats" :key="sIndex">
-                <div class="stat-value">{{ stat.value }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
+            <div class="card-content">
+              <p 
+                v-for="(paragraph, pIndex) in item.text" 
+                :key="pIndex" 
+                class="card-text"
+              >
+                <span v-if="pIndex === 0" class="first-word">{{ paragraph.split(' ')[0] }}</span>
+                {{ paragraph.substring(paragraph.indexOf(' ')+1) }}
+              </p>
+              <div class="key-points" v-if="item.keyPoints">
+                <div 
+                  v-for="(point, kIndex) in item.keyPoints" 
+                  :key="kIndex" 
+                  class="point"
+                >
+                  <div class="point-bullet"></div>
+                  {{ point }}
+                </div>
               </div>
             </div>
           </div>
@@ -50,33 +63,37 @@ import { ref } from 'vue'
 
 const relevanceItems = ref([
   {
-    title: 'Рост рынка',
-    text: 'Объем крипторынка увеличивается на 35% ежегодно (В том числе и P2P)',
+    title: 'Фундаментальная устойчивость',
+    text: [
+      'Арбитраж криптовалют остаётся актуальным благодаря базовым особенностям рынка:',
+      'Различия в ликвидности, региональные регуляторные нюансы и асинхронность работы бирж создают естественную среду для арбитража. Пока существуют децентрализованные площадки и волатильность курсов — этот инструмент будет востребован.'
+    ],
+    keyPoints: [
+      'Технологический прогресс усиливает потенциал',
+      'Интеграция с DeFi и AI аналитика',
+      'Легальные схемы с налоговой оптимизацией'
+    ],
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-          </svg>`,
-    stats: [
-      { value: '$2.1T', label: 'Капитализация' },
-      { value: '+35%', label: 'Рост/год' }
-    ]
-  },
-  {
-    title: 'Адаптивность',
-    text: 'Во время кризиса на криптовалютных рынках и мире мы так же делаем + за счет разницы курсов',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
           </svg>`
   },
   {
-    title: 'Глобальность',
-    text: 'Ликвидность торговли на P2P постоянно высокая',
+    title: 'Вечная актуальность',
+    text: [
+      'Арбитраж — экономический механизм, эволюционирующий вместе с рынком. Причины вечной востребованности:',
+      'Рынок никогда не будет идеально синхронизирован — технические сбои, регуляторные запреты и панические продажи создают постоянные дисбалансы. Новые инструменты (DeFi, NFT) расширяют возможности, но суть остается прежней.'
+    ],
+    keyPoints: [
+      'Дисбалансы — естественное состояние рынка',
+      'Методы адаптируются к новым реалиям',
+      'Взрывной рост инструментария'
+    ],
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>`
   }
 ])
 </script>
-
 <style scoped>
 .relevance-section {
   padding: 8rem 0;
@@ -84,10 +101,81 @@ const relevanceItems = ref([
   overflow: hidden;
 }
 
+.decorative-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-orb {
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 12s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(-50%) rotate(0deg); }
+  50% { transform: translateY(-55%) rotate(10deg); }
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.animated-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.4rem;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8A2BE2, #4B0082);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title:hover .animated-underline::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 .relevance-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 3rem;
   position: relative;
   z-index: 2;
 }
@@ -108,124 +196,6 @@ const relevanceItems = ref([
 
 .card-inner {
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-}
-
-.card-inner:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.card-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.card-icon {
-  width: 50px;
-  height: 50px;
-  stroke: url(#iconGradient);
-  transition: transform 0.4s ease;
-}
-
-.card-inner:hover .card-icon {
-  transform: rotate(15deg) scale(1.1);
-}
-
-.card-title {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.card-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
-  transition: width 0.4s ease;
-}
-
-.card-inner:hover .card-title::after {
-  width: 100%;
-}
-
-.card-text {
-  color: #cccccc;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.card-stats {
-  display: flex;
-  gap: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(138, 43, 226, 0.1);
-}
-
-.stat-item {
-  text-align: center;
-}
-.relevance-section {
-  padding: 8rem 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.decorative-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.floating-orb {
-  z-index: -1;
-  filter: blur(80px);
-  opacity: 0.15;
-  animation: floatOrb 20s infinite linear;
-}
-
-@keyframes floatOrb {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-50px) scale(1.2); }
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 3;
-}
-
-.relevance-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-}
-
-.card-inner {
-  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(138, 43, 226, 0.1);
   border-radius: 20px;
   padding: 2.5rem;
@@ -233,56 +203,16 @@ const relevanceItems = ref([
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(15px);
-  transform-style: preserve-3d;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Анимации текста */
-@keyframes textSlide {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card-header {
-  animation: textSlide 0.6s ease-out forwards;
-  opacity: 0;
-  animation-delay: calc(var(--delay) + 0.2s);
-}
-
-.card-title {
-  animation: textSlide 0.5s ease-out forwards;
-  opacity: 0;
-  animation-delay: calc(var(--delay) + 0.3s);
-}
-
-.card-text {
-  animation: textSlide 0.5s ease-out forwards;
-  opacity: 0;
-  animation-delay: calc(var(--delay) + 0.4s);
-}
-
-.card-stats {
-  animation: textSlide 0.5s ease-out forwards;
-  opacity: 0;
-  animation-delay: calc(var(--delay) + 0.5s);
-}
-
-/* Улучшенные эффекты при наведении */
 .card-inner:hover {
-  transform: translateY(-8px) rotateX(3deg) rotateY(3deg);
-  box-shadow: 0 15px 40px rgba(138, 43, 226, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(138, 43, 226, 0.1);
 }
 
-.card-title::after {
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Декоративные элементы */
 .card-inner::before {
   content: '';
   position: absolute;
@@ -300,81 +230,168 @@ const relevanceItems = ref([
   transform: scale(1.5);
 }
 
-/* Анимация иконок */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.card-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
 .card-icon {
+  width: 50px;
+  height: 50px;
+  stroke: url(#iconGradient);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-inner:hover .card-icon {
+  transform: rotate(15deg) scale(1.1);
   filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.3));
 }
 
-/* Статистика */
-.stat-item {
+.card-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #8A2BE2, #4B0082);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-inner:hover .card-title::after {
+  width: 100%;
+}
+
+.card-text {
+  color: rgba(255,255,255,0.85);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.card-text::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #8A2BE2;
+  font-size: 1.2rem;
+}
+
+.first-word {
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  margin-right: 0.3em;
+}
+
+.key-points {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(138,43,226,0.05);
+  border-radius: 12px;
+  border-left: 3px solid #8A2BE2;
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
   transition: transform 0.3s ease;
 }
 
-.stat-item:hover {
-  transform: translateX(5px);
-}
-.stat-value {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.point:hover {
+  transform: translateX(8px);
 }
 
-.stat-label {
-  font-size: 0.9rem;
-  color: #999;
-}
-.gradient-text {
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.animated-underline {
-  position: relative;
-  display: inline-block;
+.point-bullet {
+  width: 8px;
+  height: 8px;
+  background: #8A2BE2;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
-.animated-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+.point:hover .point-bullet {
+  transform: scale(1.4);
 }
 
-.section-title:hover .animated-underline::after {
-  transform: scaleX(1);
-}
-
-.section-title {
-    animation: titleAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  margin-bottom: 4rem;
-  font-size:2.3rem ;
-
-}
-@media (max-width: 768px) {
-  .relevance-section {
-    padding: 4rem 0;
+@media (max-width: 1024px) {
+  .relevance-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
   .card-inner {
+    min-height: auto;
     padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem;
   }
   
   .card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+  
+  .card-number {
+    font-size: 2.2rem;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    padding-left: 1rem;
+  }
+  
+  .key-points {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-text::before {
+    left: -0.5rem;
+  }
+  
+  .point {
+    font-size: 0.95rem;
   }
 }
 </style>

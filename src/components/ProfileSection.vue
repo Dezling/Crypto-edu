@@ -6,7 +6,7 @@
         <span class="subtitle">именно я твой наставник?</span>
       </h2>
 
-      <div class="profile-content">
+      <div class="profile-content first-photo">
         <div class="photo-column">
           <!-- Первое фото -->
           <div class="photo-container">
@@ -136,6 +136,12 @@ export default {
   opacity: 0;
   animation: slideIn 1s forwards;
   animation-delay: 0.3s;
+}
+.photo-container.first-photo{ 
+  animation-delay: 0.5s;
+  margin-left: 5rem;
+  transform: rotate(3deg);
+  z-index: 1;
 }
 .photo-container.secondary-photo {
   animation-delay: 0.5s;

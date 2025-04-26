@@ -1,12 +1,12 @@
 <template>
-  <section class="bonus-section">
+  <section class="benefits-section">
     <div class="decorative-elements">
       <svg class="floating-orb left" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="80" fill="url(#bonusOrbGradient)"/>
+        <circle cx="100" cy="100" r="80" fill="url(#benefitsOrbGradient)"/>
         <defs>
-          <radialGradient id="bonusOrbGradient">
-            <stop offset="0%" stop-color="#FFD700" stop-opacity="0.15"/>
-            <stop offset="100%" stop-color="#FFA500" stop-opacity="0"/>
+          <radialGradient id="benefitsOrbGradient">
+            <stop offset="0%" stop-color="#8A2BE2" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#4B0082" stop-opacity="0"/>
           </radialGradient>
         </defs>
       </svg>
@@ -14,26 +14,35 @@
 
     <div class="content-wrapper">
       <h2 class="section-title">
-        <span class="gradient-text">Уникальные Бонусы - </span> 
-        <span class="animated-underline">Ваш шанс на успех!</span>
+        <span class="gradient-text">Что ты получаешь вместе с обучением?</span>
       </h2>
 
-      <div class="bonus-grid">
+      <p class="section-subtitle">
+        Ты покупаешь не просто знания, а вход в закрытую экосистему, где каждый шаг к успеху продуман до мелочей
+      </p>
+
+      <div class="benefits-grid">
         <div 
-          v-for="(bonus, index) in uniqueBonuses" 
+          v-for="(benefit, index) in learningBenefits" 
           :key="index" 
-          class="bonus-card"
+          class="benefit-card"
           :style="{ '--delay': index * 0.2 + 's' }"
         >
           <div class="card-inner">
             <div class="card-header">
               <div class="card-number">0{{ index + 1 }}</div>
-              <svg class="card-icon" v-html="bonus.icon"></svg>
+              <svg class="card-icon" v-html="benefit.icon"></svg>
             </div>
-            <h3 class="card-title">{{ bonus.title }}</h3>
-            <p class="card-text">{{ bonus.text }}</p>
+            <h3 class="card-title">{{ benefit.title }}</h3>
+            <p class="card-text">{{ benefit.text }}</p>
           </div>
         </div>
+      </div>
+
+      <div class="conclusion-box">
+        <p class="conclusion-text">
+          Арбитраж — это не одиночная игра. Мы уже держим для тебя место в первом ряду
+        </p>
       </div>
     </div>
   </section>
@@ -42,47 +51,70 @@
 <script setup>
 import { ref } from 'vue'
 
-const uniqueBonuses = ref([
+const learningBenefits = ref([
   {
-    title: 'Эксклюзивная информация',
-    text: 'Закидываю в сообщество самую новую и свежую инфу по рынку',
+    title: 'Комьюнити 24/7',
+    text: 'Доступ к чату с актуальными связками, обсуждением трендов и взаимной поддержкой. Реальные трейдеры, которые понимают твои боли',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6 4H3v-2h18v2z"/>
-          </svg>`,
-  },
-  {
-    title: 'Активное взаимодействие с командой',
-    text: 'Самые дружелюбные рабочие отношения которые вы можете только представить',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11V7a1 1 0 00-1-1H5a1 1 0 00-1 1v4m10 0h4m-4 4h5m-5 0v4a1 1 0 001 1h1a1 1 0 001-1v-4"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
           </svg>`
   },
   {
-    title: 'Легкое преподнесение информации',
-    text: 'Такой структуры вы не найдете нигде, вам будет интересно и одновременно вы будете прокачивать свои скилы',
+    title: 'Пожизненное сопровождение',
+    text: 'Личная поддержка даже через год, обновления курса, бесплатный доступ к новым потокам и общие созвоны по стратегиям',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4m16 0l-4-4m4 4l-4 4"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>`
+  },
+  {
+    title: 'Коллабы с топами',
+    text: 'Возможность попасть на обучение к топовым криптотрейдерам России бесплатно. Нужно только желание',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
           </svg>`
   }
 ])
 </script>
 
 <style scoped>
-.bonus-section {
+.benefits-section {
   padding: 8rem 0;
   position: relative;
   overflow: hidden;
 }
 
-.bonus-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
   position: relative;
   z-index: 2;
 }
 
-.bonus-card {
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #cccccc;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  line-height: 1.6;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.benefit-card {
   opacity: 0;
   transform: translateY(30px);
   animation: cardRise 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -97,18 +129,18 @@ const uniqueBonuses = ref([
 }
 
 .card-inner {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
+  background: rgba(45, 30, 60, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  border: 1px solid rgba(138, 43, 226, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 }
 
 .card-inner:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.15);
 }
 
 .card-header {
@@ -119,9 +151,9 @@ const uniqueBonuses = ref([
 }
 
 .card-number {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  background: linear-gradient(45deg, #FFD700, #FFA500);
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -129,18 +161,20 @@ const uniqueBonuses = ref([
 .card-icon {
   width: 50px;
   height: 50px;
+  color: #BA55D3;
   transition: transform 0.4s ease;
 }
 
 .card-inner:hover .card-icon {
-  transform: scale(1.1);
+  transform: rotate(15deg) scale(1.1);
 }
 
 .card-title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  color: #fff;
   margin-bottom: 1rem;
   position: relative;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.8rem;
 }
 
 .card-title::after {
@@ -150,7 +184,7 @@ const uniqueBonuses = ref([
   left: 0;
   width: 40px;
   height: 2px;
-  background: linear-gradient(90deg, #FFD700, #FFA500);
+  background: linear-gradient(90deg, #8A2BE2, #4B0082);
   transition: width 0.4s ease;
 }
 
@@ -161,7 +195,24 @@ const uniqueBonuses = ref([
 .card-text {
   color: #cccccc;
   line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.conclusion-box {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem;
+  background: rgba(138, 43, 226, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+.conclusion-text {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0;
+  font-style: italic;
+  position: relative;
 }
 
 .decorative-elements {
@@ -175,63 +226,52 @@ const uniqueBonuses = ref([
 }
 
 .floating-orb {
-  z-index: -1;
   filter: blur(80px);
-  opacity: 0.15;
+  opacity: 0.1;
   animation: floatOrb 20s infinite linear;
 }
 
 @keyframes floatOrb {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-50px) scale(1.2); }
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 3;
-}
-
-.section-title {
-  margin-bottom: 4rem;
-  font-size: 2.3rem;
-  animation: titleAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 50px) scale(1.2); }
 }
 
 .gradient-text {
-  background: linear-gradient(45deg, #FFD700, #FFA500);
+  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.animated-underline {
-  position: relative;
-  display: inline-block;
-}
-
-.animated-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #FFD700, #FFA500);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.section-title:hover .animated-underline::after {
-  transform: scaleX(1);
-}
-
 @media (max-width: 768px) {
-  .bonus-section {
+  .benefits-section {
     padding: 4rem 0;
   }
-  
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   .card-inner {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+
+  .conclusion-box {
+    margin-top: 3rem;
+    padding: 1.5rem;
+  }
+
+  .conclusion-text {
+    font-size: 1.1rem;
   }
 }
 </style>

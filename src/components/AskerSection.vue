@@ -14,8 +14,8 @@
 
     <div class="content-wrapper">
       <h2 class="section-title">
-        <span class="gradient-text">Возражения - </span>
-        <span class="animated-underline">развенчание мифов</span>
+        <span class="gradient-text">Развеиваем сомнения — </span>
+        <span class="animated-underline">прозрачность вместо мифов</span>
       </h2>
 
       <div class="objection-grid">
@@ -27,7 +27,16 @@
         >
           <div class="card-inner">
             <h3 class="card-title">{{ item.title }}</h3>
-            <p class="card-text">{{ item.text }}</p>
+            <div class="response-list">
+              <div 
+                v-for="(response, rIndex) in item.responses" 
+                :key="rIndex" 
+                class="response-item"
+              >
+                <div class="response-marker">{{ rIndex + 1 }}</div>
+                <p class="response-text">{{ response }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -40,20 +49,46 @@ import { ref } from 'vue'
 
 const objections = ref([
   {
-    title: 'Меня обманут, как и другие псевдо-специалисты',
-    text: 'Моя репутация и опыт, просто не оставляет эту мысль в живых. Кейсы, гарантии, чат с реальными людьми включая моих учеников тому доказательство.'
+    title: '«Ты меня заскамишь, и я потеряю деньги»',
+    responses: [
+      'Если бы я занимался скамом, мне проще было бы продавать «волшебные кнопки». Репутация дороже разовых $1000',
+      'Открытые отзывы, YouTube-канал и ученики-шефы — лучшие гарантии'
+    ]
   },
   {
-    title: 'Уверен что это незаконно',
-    text: 'Абсолютно законно, ведь мы не берем чужие карты или банковские аккаунты, а так же не работаем с процессинговыми площадками.'
+    title: '«Твоё обучение плохое»',
+    responses: [
+      'Ученики покупают вторые айфоны, а не пишут гневные отзывы',
+      'Программа на реальных кейсах + личный разбор материала'
+    ]
   },
   {
-    title: 'Это обычная серая схема на раз!',
-    text: 'Арбитраж это полноценный бизнес и профессия, которая умрет только в случае, если привычное понимание денег исчезнет.'
+    title: '«Арбитраж это не серьёзно»',
+    responses: [
+      'Серьёзно — 20 лет копить на пенсию. Арбитраж — когда пенсия копится на тебя',
+      'Учим системности, а не лотерее. Банки десятилетиями живут на спредах'
+    ]
   },
   {
-    title: 'Нужно уделять слишком много времени',
-    text: 'Почти 90% моих учеников по началу совмещают арбитраж вместе с основной работой, но позже полностью уходят в арбитраж.'
+    title: '«Арбитраж это незаконно»',
+    responses: [
+      'Работа через лицензированные биржи — абсолютно легально',
+      'Никаких серых схем — только прозрачные операции'
+    ]
+  },
+  {
+    title: '«Нужно уделять много времени»',
+    responses: [
+      '90% учеников начинают совмещать с основной работой',
+      'Дисциплина нужна везде — но здесь она окупается кратно'
+    ]
+  },
+  {
+    title: '«А если запретят в России?»',
+    responses: [
+      'Крипта вне границ — работаем из любой точки мира',
+      'Ужесточение законов = рост спреда = новые возможности'
+    ]
   }
 ])
 </script>
@@ -65,37 +100,16 @@ const objections = ref([
   overflow: hidden;
 }
 
-.decorative-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.floating-orb {
-  z-index: -1;
-  filter: blur(80px);
-  opacity: 0.15;
-  animation: floatOrb 20s infinite linear;
-}
-
-@keyframes floatOrb {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-50px) scale(1.2); }
-}
-
 .content-wrapper {
-  position: relative;
-  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .objection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
 .objection-card {
@@ -113,29 +127,91 @@ const objections = ref([
 }
 
 .card-inner {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 2.5rem;
+  background: rgba(45, 30, 60, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card-inner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.15);
+}
+
+.card-title {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
   position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-}
-.section-title:hover .animated-underline::after {
-  transform: scaleX(1);
+  padding-left: 1.5rem;
 }
 
+.card-title::before {
+  content: '⁉';
+  position: absolute;
+  left: 0;
+  top: -0.2rem;
+  color: #BA55D3;
+  font-size: 1.2em;
+}
+
+.response-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.response-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.decorative-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.response-marker {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.response-text {
+  color: #cccccc;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Общие стили для заголовков */
 .section-title {
-    animation: titleAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  text-align: center;
+  font-size: 2.5rem;
   margin-bottom: 4rem;
-  font-size:2.3rem ;
-
+  line-height: 1.3;
 }
+
 .gradient-text {
   background: linear-gradient(45deg, #8A2BE2, #BA55D3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .animated-underline {
   position: relative;
   display: inline-block;
@@ -157,19 +233,39 @@ const objections = ref([
 .section-title:hover .animated-underline::after {
   transform: scaleX(1);
 }
-.card-inner:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
+
+@media (max-width: 768px) {
+  .objection-section {
+    padding: 4rem 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .objection-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    padding-left: 1.2rem;
+  }
+  
+  .response-text {
+    font-size: 0.9rem;
+  }
 }
 
-.card-title {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
+.floating-orb {
+  filter: blur(80px);
+  opacity: 0.1;
+  animation: floatOrb 20s infinite linear;
 }
 
-.card-text {
-  color: #cccccc;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 50px) scale(1.2); }
 }
 </style>
