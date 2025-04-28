@@ -98,7 +98,7 @@ export default {
 .word-accent:nth-child(3) { animation-delay: 0.8s;color: #8A2BE2; }
 .dynamic-description {
   position: relative;
-  margin: 2rem 0;
+  margin: 6rem 0;
   font-size: 1.4rem;
   max-width: 700px;
 }
@@ -130,9 +130,9 @@ export default {
 .feature-badge {
   background: rgba(138, 43, 226, 0.15);
   border: 1px solid #8A2BE2;
-  padding: 0.8rem 1.2rem;
-  border-radius: 50px;
-  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+  border-radius: 40px;
+  font-size: 0.9rem;
   text-align: center;
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;

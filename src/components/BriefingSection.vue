@@ -49,7 +49,7 @@
             class="module-card"
           >
             <div class="module-header">
-              <div class="module-number">0{{ index + 1 }}</div>
+              <div class="module-number">{{-1+ index + 1 }}</div>
               <h3>{{ module.title }}</h3>
             </div>
             
