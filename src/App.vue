@@ -3,8 +3,9 @@
     <NavBar />
     
     <section 
-      v-for="(section, index) in sections" 
+       v-for="(section, index) in sections" 
       :key="index"
+      :id="getSectionId(section)"
       :ref="el => { sectionRefs[index] = el }"
       class="scroll-section"
       :class="{
@@ -38,20 +39,31 @@ import UpPointsSection from './components/UpPointsSection.vue'
 import FreePeoductSelection from './components/FreePeoductSelection.vue'
 import WowSection from './components/WowSection.vue'
 import AskerSection from './components/AskerSection.vue'
+import { defineAsyncComponent } from 'vue'
+
+const components = {
+  MainSection: defineAsyncComponent(() => import('./components/MainSection.vue')),
+  AboutSection: defineAsyncComponent(() => import('./components/AboutSection.vue')),
+  BriefingSection: defineAsyncComponent(() => import('./components/BriefingSection.vue')),
+  TarifSection: defineAsyncComponent(() => import('./components/TarifSection.vue')),
+  CasesComponent: defineAsyncComponent(() => import('./components/CasesComponent.vue')),
+
+}
+
 const sections = [
-  { component: MainSection },
+  { component: MainSection, name: 'main' },
   { component: ArbitrageSection },
   { component: ProfileSection },
-  { component: AboutSection },
+  { component: AboutSection , name: 'about'},
   { component: FullWorkSection },
-  { component: BriefingSection },
+  { component: BriefingSection, name:'briefing' },
   { component: JailCardSections },
   { component: GarantSection },
-  { component: CasesComponent },
+  { component: CasesComponent, name:'cases' },
   { component: ActualArgitrageSection },
   { component: UpPointsSection },
   { component: FreePeoductSelection },
-  { component: TarifSection },
+  { component: TarifSection, name:'pricing' },
   { component: AskerSection },
   { component: WowSection },
   { component: FaqSection },
@@ -62,6 +74,9 @@ const sectionRefs = ref([])
 const activeIndex = ref(0)
 let scrollTimeout = null
 
+const getSectionId = (section) => {
+  return section.name
+}
 const getVisibleSection = () => {
   const scrollPosition = window.scrollY + window.innerHeight / 2
   let closestSection = 0
@@ -122,7 +137,7 @@ body {
 .scroll-section {
   position: relative;
   min-height: 100vh;
-  padding: 6rem 2rem 2rem;
+  padding: 100px 2rem 2rem;
   transition: 
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -166,7 +181,7 @@ body {
   z-index: 1;
 }
 
-NavBar {
+.navbar-wrapper {
   position: fixed;
   top: 0;
   left: 0;

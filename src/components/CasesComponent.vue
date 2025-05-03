@@ -1,5 +1,5 @@
 <template>
-  <section class="cases-section">
+  <section id="cases" class="cases-section">
     <div class="content-wrapper">
       <h2 class="section-title">
         <span class="gradient-text">Наши кейсы</span> -

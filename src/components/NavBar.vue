@@ -41,79 +41,39 @@
     </div>
   </nav>
 </template>
-
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 
 const links = ref([
   { name: 'Обо мне', path: '#about' },
-  { name: 'Программа', path: '#program' },
-  { name: 'Кейсы', path: '#briefing' },
-  { name: 'Отзывы', path: '#reviews' },
+  { name: 'Программа', path: '#briefing' },
+  { name: 'Кейсы', path: '#cases' },
   { name: 'Тарифы', path: '#pricing' },
 ])
 
-const hoverActive = ref(null)
+const smoothScroll = async (targetId) => {
+  try {
+    const target = document.querySelector(targetId)
+    if (!target) {
+      console.error(`Element ${targetId} not found`)
+      return
+    }
 
-const isScrolled = ref(false)
-const isMenuOpen = ref(false)
+    const navbarHeight = document.querySelector('.navbar').offsetHeight
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY
+    const offsetPosition = targetPosition - navbarHeight
 
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-}
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
 
-const smoothScroll = (targetId) => {
-  const targetElement = document.querySelector(targetId)
-  if (!targetElement) return
-  
-  const navbarHeight = document.querySelector('.navbar').offsetHeight
-  const targetPosition = targetElement.offsetTop - navbarHeight
-  const startPosition = window.pageYOffset
-  const distance = targetPosition - startPosition
-  const duration = 800
-  let startTime = null
-
-  const animation = (currentTime) => {
-    if (!startTime) startTime = currentTime
-    const timeElapsed = currentTime - startTime
-    const run = ease(timeElapsed, startPosition, distance, duration)
-    window.scrollTo(0, run)
-    if (timeElapsed < duration) requestAnimationFrame(animation)
-  }
-
-  const ease = (t, b, c, d) => {
-    t /= d / 2
-    if (t < 1) return c / 2 * t * t + b
-    t--
-    return -c / 2 * (t * (t - 2) - 1) + b
-  }
-
-  requestAnimationFrame(animation)
-}
-
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50
-  if (isMenuOpen.value) {
     isMenuOpen.value = false
+  } catch (error) {
+    console.error('Scroll error:', error)
   }
 }
-
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
 </script>
-
 <style scoped>
 /* Скрываем бургер-меню по умолчанию */
 .burger-menu {
@@ -137,7 +97,7 @@ onUnmounted(() => {
   background: rgba(138,43,226,0.2);
 }
 .navbar {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;

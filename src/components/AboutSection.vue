@@ -42,6 +42,9 @@
 
 <script setup>
 import { ref } from 'vue'
+defineOptions({
+  name: 'AboutSection'
+})
 
 const advantages = ref([
   {

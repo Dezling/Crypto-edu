@@ -43,6 +43,14 @@
           <div v-if="tariff.installment" class="installment-badge">
             <span>✓ Рассрочка</span>
           </div>
+          <a 
+        href="#" 
+        class="tariff-button"
+        @click.prevent
+      >
+        Выбрать тариф
+        <div class="button-hover-effect"></div>
+      </a>
         </div>
       </div>
     </div>
@@ -110,6 +118,52 @@ const tariffs = ref([
 
 .tariff-card {
   padding-bottom: 1.5rem; /* Добавляем отступ снизу карточки */
+}
+.tariff-button {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 1.2rem 2rem;
+  background: linear-gradient(45deg, #8A2BE2, #4B0082);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  margin-top: auto;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.tariff-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+}
+
+.tariff-button:active {
+  transform: translateY(1px);
+}
+
+.button-hover-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tariff-button:hover .button-hover-effect {
+  left: 100%;
 }
 
 /* Остальные стили остаются без изменений */

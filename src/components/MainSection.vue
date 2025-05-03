@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section">
+  <section id = 'main' class="hero-section">
     <div class="coin-background">
       <img src="/src/assets/1.svg" class="coin" alt="coin">
     </div>
@@ -62,14 +62,12 @@ export default {
 
 <style scoped>
 .hero-section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 0 5%;
-  padding-top: 80px;
-  position: relative;
-  overflow: hidden;
+  height: auto;
+  min-height: 100vh;
+  padding: 2rem 5%;
+  padding-top: 100px;
 }
+
 .animated-slogan {
   position: relative;
   display: inline-block;
@@ -177,6 +175,7 @@ export default {
 }
 .feature-item {
   display: flex;
+  
   align-items: flex-start;
   margin-bottom: 1.5rem;
   padding: 1rem;
@@ -408,5 +407,116 @@ export default {
     linear-gradient(to bottom, rgba(138,43,226,0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   z-index: 1;
+}
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 80px;
+    min-height: auto;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .features-list {
+    margin: 2rem 0;
+  }
+
+  .feature-item {
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-number {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-text {
+    font-size: 1rem;
+    padding-right: 0;
+  }
+
+  .dynamic-description {
+    flex-direction: column;
+    margin: 3rem 0;
+    gap: 1.5rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-badge {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .visual-element {
+    height: 300px;
+    margin-top: 2rem;
+  }
+
+  .coin {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    animation: gentleFloatMobile 6s ease-in-out infinite;
+  }
+
+  .blockchain-line {
+    display: none;
+  }
+
+  .coin:hover {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    filter: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .feature-number {
+    font-size: 1.8rem;
+  }
+
+  .feature-text {
+    font-size: 0.9rem;
+  }
+
+  .coin {
+    max-width: 300px;
+  }
+}
+
+@keyframes gentleFloatMobile {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-50%, -52%) rotate(2deg);
+  }
 }
 </style>
