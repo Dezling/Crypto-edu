@@ -106,7 +106,7 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
-  handleScroll() // Инициализация при загрузке
+  handleScroll()
 })
 
 onBeforeUnmount(() => {

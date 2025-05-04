@@ -165,7 +165,7 @@ const penalties = ref([
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 2; /* Уменьшаем для фоновых элементов */
+  z-index: 2; 
 }
 
 .gradient-text {

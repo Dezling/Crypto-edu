@@ -308,7 +308,6 @@ const alertIcon = ref(`
   z-index: 2;
 }
 
-/* Анимации */
 @keyframes slideIn {
   from {
     opacity: 0;

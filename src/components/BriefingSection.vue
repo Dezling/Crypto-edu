@@ -212,7 +212,6 @@ const handleWheel = (e) => {
 }
 </script>
 <style scoped>
-/* Base styles */
 .steps-section {
   padding: 6rem 1rem;
   position: relative;
@@ -224,7 +223,6 @@ const handleWheel = (e) => {
   margin: 0 auto;
 }
 
-/* Typography */
 .section-title {
   font-size: 2.5rem;
   text-align: center;
@@ -248,7 +246,6 @@ const handleWheel = (e) => {
   100% { background-position: 0% 50%; }
 }
 
-/* Approach Section */
 .approach-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -294,7 +291,6 @@ const handleWheel = (e) => {
   font-size: 0.95rem;
 }
 
-/* Modules Section */
 .modules-grid {
   display: flex;
   overflow-x: auto;
@@ -319,7 +315,7 @@ const handleWheel = (e) => {
 }
 .modules-section {
   margin-top: 6rem;
-  padding: 1rem; /* Опционально: добавьте отступы для визуального комфорта */
+  padding: 1rem; 
 }
 
 .module-header {
@@ -385,7 +381,6 @@ const handleWheel = (e) => {
   flex-shrink: 0;
 }
 
-/* Practice Section */
 .practice-section {
   margin-top: 6rem;
 }
@@ -437,7 +432,6 @@ const handleWheel = (e) => {
   font-size: 0.95rem;
 }
 
-/* Scrollbar Styling */
 .modules-grid::-webkit-scrollbar {
   height: 8px;
 }
@@ -456,7 +450,6 @@ const handleWheel = (e) => {
   background: #BA55D3;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .section-title {
     font-size: 2.2rem;

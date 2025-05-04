@@ -210,8 +210,6 @@ const objections = ref([
   margin: 0;
   font-size: 1rem;
 }
-
-/* Общие стили для заголовков остаются без изменений */
 .section-title {
   text-align: center;
   font-size: 2.5rem;

@@ -106,18 +106,16 @@ const tariffs = ref([
 </script>
 
 <style scoped>
-/* Удаляем стили для кнопки */
 .cta-button, .hover-line {
   display: none;
 }
 
-/* Корректируем отступы */
 .tariff-features {
-  margin-bottom: 1rem; /* Уменьшаем отступ снизу */
+  margin-bottom: 1rem; 
 }
 
 .tariff-card {
-  padding-bottom: 1.5rem; /* Добавляем отступ снизу карточки */
+  padding-bottom: 1.5rem;
 }
 .tariff-button {
   position: relative;
@@ -166,7 +164,7 @@ const tariffs = ref([
   left: 100%;
 }
 
-/* Остальные стили остаются без изменений */
+
 .pricing-section {
   padding: 8rem 5%;
   background: #0F0F0F;

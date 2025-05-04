@@ -102,7 +102,7 @@ const advantages = ref([
 }
 .content-wrapper {
   position: relative;
-  z-index: 2; /* Увеличиваем z-index */
+  z-index: 2;
   padding: 2rem;
 }
 .decorative-elements {
@@ -110,23 +110,23 @@ const advantages = ref([
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1; /* Фиксируем ниже контента */
+  z-index: 1; 
 }
 .floating-orb {
-  z-index: -1; /* Отправляем орбы за контент */
+  z-index: -1; 
 }
 .profession-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  position: relative; /* Добавляем позиционирование */
+  position: relative; 
 }
 .main-card {
   background: rgba(138, 43, 226, 0.05);
   border: 1px solid rgba(138, 43, 226, 0.1);
   border-radius: 20px;
   padding: 2.5rem;
-  backdrop-filter: blur(5px); /* Добавляем эффект стекла */
+  backdrop-filter: blur(5px);
 }
 .advantages-grid {
   display: grid;

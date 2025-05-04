@@ -1,6 +1,5 @@
 <template>
   <section class="telegram-section" id="community">
-    <!-- Анимированный фон -->
     <div class="background-effects">
       <div class="particles">
         <div 

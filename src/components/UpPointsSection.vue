@@ -140,11 +140,11 @@ const progressWidth = (index) => {
 }
 
 .step-content {
-  background: rgba(45, 30, 60, 0.9); /* Фиолетовый фон карточек */
+  background: rgba(45, 30, 60, 0.9); 
   border-radius: 16px;
   padding: 2rem;
   height: 350px;
-  border: 1px solid rgba(138, 43, 226, 0.3); /* Фиолетовая граница */
+  border: 1px solid rgba(138, 43, 226, 0.3); 
   transition: transform 0.3s ease;
   position: relative;
   overflow: hidden;

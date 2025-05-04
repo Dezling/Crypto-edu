@@ -124,7 +124,6 @@ const stats = ref([
 </script>
 
 <style scoped>
-/* Добавленные/измененные стили для иконок */
 .icon-wrapper,
 .stat-icon-wrapper {
   display: flex;
@@ -144,19 +143,16 @@ const stats = ref([
   width: 100px;
   height: 100px;
   margin-bottom: 1.5rem;
-  color: #BA55D3; /* Цвет для преимуществ */
+  color: #BA55D3; 
 }
 
 .stat-icon-wrapper {
   width: 60px;
   height: 60px;
   margin: 0 auto 1rem;
-  color: #8A2BE2; /* Цвет для статистики */
+  color: #8A2BE2; 
 }
 
-/* Остальные стили остаются без изменений */
-</style>
-<style scoped>
 .about-section {
   padding: 8rem 5% 4rem;
   min-height: 100vh;

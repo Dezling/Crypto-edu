@@ -8,7 +8,6 @@
 
       <div class="profile-content first-photo">
         <div class="photo-column">
-          <!-- Первое фото -->
           <div class="photo-container">
             <img 
               src="/images/mon.jpg" 
@@ -18,7 +17,6 @@
             <div class="photo-overlay"></div>
           </div>
 
-          <!-- Второе фото -->
           <div class="photo-container secondary-photo">
             <img 
               src="/images/monney.jpg" 
@@ -210,13 +208,13 @@ export default {
 }
 
 .highlight {
-  color: #FFDD57; /* Привлекательный цвет для выделения */
+  color: #FFDD57; 
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .highlight:hover {
-  color: #FFC107; /* Цвет при наведении */
+  color: #FFC107;
 }
 
 @keyframes slideIn {

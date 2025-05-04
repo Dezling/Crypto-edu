@@ -75,12 +75,10 @@ const smoothScroll = async (targetId) => {
 }
 </script>
 <style scoped>
-/* Скрываем бургер-меню по умолчанию */
 .burger-menu {
   display: none;
 }
 
-/* Скрываем мобильное меню по умолчанию */
 .mobile-menu {
   display: none;
 }
@@ -136,9 +134,9 @@ const smoothScroll = async (targetId) => {
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Заменяем auto на hidden */
-  -ms-overflow-style: none;  /* IE и Edge */
-  scrollbar-width: none;  /* Firefox */
+  overflow-x: hidden;
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
 }
 
 .link-item {
@@ -188,12 +186,12 @@ const smoothScroll = async (targetId) => {
 
 
 @media (max-width: 768px) {
-  /* Скрываем обычное меню на мобильных */
+
   .nav-links {
     display: none;
   }
   
-  /* Показываем бургер-меню */
+  
   .burger-menu {
     display: flex;
     flex-direction: column;
@@ -210,10 +208,10 @@ const smoothScroll = async (targetId) => {
     transition: all 0.3s ease;
   }
 
-  /* Стили для активного мобильного меню */
+ 
 .mobile-menu {
   position: fixed;
-  top: 60px; /* Высота навбара */
+  top: 60px; 
   left: 0;
   right: 0;
   background: #0F0F0F;
@@ -222,7 +220,7 @@ const smoothScroll = async (targetId) => {
   flex-direction: column;
   gap: 1rem;
   border-bottom: 1px solid rgba(138,43,226,0.2);
-  z-index: 9999; /* Увеличиваем z-index */
+  z-index: 9999;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
@@ -230,7 +228,6 @@ const smoothScroll = async (targetId) => {
   display: flex;
 }
 
-  /* Исправляем отступы для мобильной версии */
   .navbar {
     flex-wrap: nowrap;
     padding: 0.8rem 5%;

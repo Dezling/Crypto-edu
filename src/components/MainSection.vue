@@ -87,7 +87,6 @@ export default {
   font-size: 3.2rem;
   line-height: 1;
   text-align: left;
-  /* margin: 0 0.8rem; */
   animation: blink 2s ease-in forwards;
 }
 
@@ -160,7 +159,7 @@ export default {
 .text-content {
   position: relative;
   z-index: 3;
-    text-align: left; /* Выравнивание текста по левую сторону */
+    text-align: left; 
 
 }
 
@@ -288,7 +287,7 @@ export default {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2; /* Увеличиваем z-index */
+  z-index: 2; 
   pointer-events: none;
 }
 
@@ -324,7 +323,6 @@ export default {
   }
 }
 
-/* Добавляем свечение вокруг монетки */
 .coin::after {
   content: '';
   position: absolute;
@@ -351,7 +349,6 @@ export default {
     transform: scale(1.05);
   }
 }
-/* Добавляем эффект частиц при наведении */
 .coin:hover::after {
   content: '';
   position: absolute;

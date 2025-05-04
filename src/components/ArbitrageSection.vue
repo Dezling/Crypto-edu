@@ -461,9 +461,6 @@ onMounted(() => {
   100% { width: 100%; opacity: 0; }
 }
 
-
-
-/* Адаптация для мобильных */
 @media (max-width: 768px) {
   .glowing-text {
     font-size: 1rem;

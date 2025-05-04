@@ -1,6 +1,5 @@
 <template>
   <section class="guarantee-section" id="guarantee">
-    <!-- Фоновые SVG элементы -->
     <svg class="bg-pattern" viewBox="0 0 1440 363" fill="none">
       <path 
         d="M1440 27.4774C1352.73 19.8184 1122.41 49.0556 899.331 227.276C620.48 450.052 354.282 355.647 170.328 185.318C23.165 49.0556 -4.21721 8.32998 0.487081 5" 
@@ -15,8 +14,6 @@
         <span class="gradient-text">Гарантии </span>
         <span class="animated-underline"> и ответы на вопросы</span>
       </h2>
-
-      <!-- Секция гарантий -->
       <h3 class="section-subtitle">Наши гарантии</h3>
       <div class="garant-container">
         <div 
@@ -40,8 +37,6 @@
           </transition>
         </div>
       </div>
-
-      <!-- Секция вопросов -->
       <h3 class="section-subtitle">Частые вопросы</h3>
       <div class="faq-container">
         <div 
@@ -339,7 +334,6 @@ const toggleGarant = (index) => {
   font-weight: 300;
 }
 
-/* Стили для гарантий */
 .garant-container ol {
   counter-reset: garant-counter;
   padding-left: 0;
@@ -377,7 +371,6 @@ const toggleGarant = (index) => {
   font-size: 1.2em;
 }
 
-/* Адаптивность */
 @media (max-width: 1024px) {
   .section-title {
     font-size: 3.5rem;
