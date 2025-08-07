@@ -67,7 +67,7 @@ const sections = [
   { component: AskerSection },
   { component: WowSection },
   { component: FaqSection },
-  // { component: SharedSection }
+  { component: SharedSection }
 ]
 
 const sectionRefs = ref([])
