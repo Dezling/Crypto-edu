@@ -3,7 +3,7 @@
     <NavBar />
     
     <section 
-       v-for="(section, index) in sections" 
+      v-for="(section, index) in sections" 
       :key="index"
       :id="getSectionId(section)"
       :ref="el => { sectionRefs[index] = el }"
@@ -47,23 +47,22 @@ const components = {
   BriefingSection: defineAsyncComponent(() => import('./components/BriefingSection.vue')),
   TarifSection: defineAsyncComponent(() => import('./components/TarifSection.vue')),
   CasesComponent: defineAsyncComponent(() => import('./components/CasesComponent.vue')),
-
 }
 
 const sections = [
   { component: MainSection, name: 'main' },
   { component: ArbitrageSection },
   { component: ProfileSection },
-  { component: AboutSection , name: 'about'},
-  { component: FullWorkSection }, // ломает
-  { component: BriefingSection, name:'briefing' }, //ломает
+  { component: AboutSection, name: 'about' },
+  { component: FullWorkSection },
+  { component: BriefingSection, name: 'briefing' },
   { component: JailCardSections },
   { component: GarantSection },
-  { component: CasesComponent, name:'cases' }, //ЛОМАЕТ
-  { component: ActualArgitrageSection }, //ЛОМАЕТ
-  { component: UpPointsSection }, //ЛОМАЕТ
+  { component: CasesComponent, name: 'cases' },
+  { component: ActualArgitrageSection },
+  { component: UpPointsSection },
   { component: FreePeoductSelection },
-  { component: TarifSection, name:'pricing' },
+  { component: TarifSection, name: 'pricing' },
   { component: AskerSection },
   { component: WowSection },
   { component: FaqSection },
@@ -77,18 +76,19 @@ let scrollTimeout = null
 const getSectionId = (section) => {
   return section.name
 }
+
 const getVisibleSection = () => {
   const scrollPosition = window.scrollY + window.innerHeight / 2
   let closestSection = 0
   let minDistance = Infinity
 
   sectionRefs.value.forEach((section, index) => {
-    if(!section) return
+    if (!section) return
     const rect = section.getBoundingClientRect()
     const sectionCenter = rect.top + window.scrollY + rect.height / 2
     const distance = Math.abs(scrollPosition - sectionCenter)
 
-    if(distance < minDistance) {
+    if (distance < minDistance) {
       minDistance = distance
       closestSection = index
     }
@@ -98,7 +98,7 @@ const getVisibleSection = () => {
 }
 
 const handleScroll = () => {
-  if(scrollTimeout) window.cancelAnimationFrame(scrollTimeout)
+  if (scrollTimeout) window.cancelAnimationFrame(scrollTimeout)
   scrollTimeout = window.requestAnimationFrame(() => {
     activeIndex.value = getVisibleSection()
   })
@@ -111,7 +111,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll)
-  if(scrollTimeout) window.cancelAnimationFrame(scrollTimeout)
+  if (scrollTimeout) window.cancelAnimationFrame(scrollTimeout)
 })
 </script>
 
@@ -126,27 +126,32 @@ onBeforeUnmount(() => {
 body {
   background: #0F0F0F;
   color: #FFFFFF;
+  -ms-overflow-style: none; /* Скрытие скроллбара в IE/Edge */
+  scrollbar-width: none;
   overflow-x: hidden;
 }
 
 .app {
   min-height: 100vh;
   perspective: 1000px;
+  background: #0F0F0F; /* Черный фон для области переполнения */
+  overflow-x: hidden; /* Предотвращение горизонтального переполнения */
 }
 
 .scroll-section {
   position: relative;
   min-height: 100vh;
-  padding: 100px 2rem 2rem;
+  padding: 100px clamp(1rem, 5%, 2rem) 2rem;
   transition: 
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity, filter;
+  background: #0F0F0F; /* Черный фон для области переполнения */
+  overflow-x: hidden; /* Предотвращение горизонтального переполнения */
 }
 
 .scroll-section::before {
-  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -159,9 +164,9 @@ body {
 }
 
 .scroll-section:not(.active-section) {
-  transform: translateY(20px) scale(0.98);
+  /* transform: translateY(20px) scale(0.98);
   opacity: 0.4;
-  filter: blur(8px);
+  filter: blur(8px); */
 }
 
 .scroll-section.active-section {
@@ -179,6 +184,11 @@ body {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  overflow-x: hidden; /* Дополнительная защита от переполнения */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Скрытие скроллбара в WebKit-браузерах */
 }
 
 .navbar-wrapper {
@@ -191,4 +201,21 @@ body {
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 768px) {
+  .scroll-section {
+    padding: clamp(3rem, 8vw, 4rem) clamp(0.5rem, 3%, 1rem) 0; /* Уменьшенные отступы, убрали нижний */
+  }
+
+  .section-content {
+    max-width: 700px; /* Центрирование контента */
+    margin: 0 auto;
+    padding: 0 clamp(0.5rem, 3%, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-section {
+    padding: clamp(2rem, 6vw, 3rem) clamp(0.5rem, 3%, 1rem) 0; /* Еще более компактные отступы */
+  }
+}
 </style>
