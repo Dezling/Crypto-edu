@@ -301,7 +301,7 @@ const features = ref([
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 10px 3% 0; /* Убрали нижний отступ */
+    padding: 80px 3% 0; /* Убрали нижний отступ */
   }
 
   .coin-background {
@@ -310,7 +310,7 @@ const features = ref([
 
   .content-wrapper {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .visual-element {
@@ -326,13 +326,13 @@ const features = ref([
   }
 
   .dynamic-description {
-    margin-top: 4.5rem;
+    margin-top: 1.5rem;
     justify-content: center;
   }
 
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 0.5rem;
   }
 
   .cta-button {
@@ -347,7 +347,7 @@ const features = ref([
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 20px 2% 0; /* Убрали нижний отступ и уменьшили верхний */
+    padding: 60px 3% 0; /* Убрали нижний отступ и уменьшили верхний */
   }
 
   .title {
