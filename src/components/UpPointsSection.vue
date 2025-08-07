@@ -5,8 +5,8 @@
         <circle cx="100" cy="100" r="80" fill="url(#evolutionGradient)"/>
         <defs>
           <radialGradient id="evolutionGradient">
-            <stop offset="0%" stop-color="#2172E5" stop-opacity="0.1"/>
-            <stop offset="100%" stop-color="#1A42AB" stop-opacity="0"/>
+            <stop offset="0%" stop-color="#8A2BE2" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#4B0082" stop-opacity="0"/>
           </radialGradient>
         </defs>
       </svg>
@@ -86,43 +86,100 @@ const progressWidth = (index) => {
 
 <style scoped>
 .evolution-section {
-  padding: 6rem 0;
+  padding: 6rem clamp(1rem, 5%, 2rem); /* Синхронизировано с CardsSection.vue */
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+  background: #0F0F0F; /* Совместимо с GuaranteeSection.vue */
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
+
 .decorative-elements {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 1;
 }
 
+.evolution-orb {
+  position: absolute;
+  top: 50%;
+  right: clamp(0.5rem, 2vw, 1rem); /* Адаптивный отступ */
+  width: clamp(80px, 12vw, 100px); /* Уменьшенный размер */
+  height: clamp(80px, 12vw, 100px);
+  transform: translateY(-50%);
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 12s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(-50%) rotate(0deg); }
+  50% { transform: translateY(-55%) rotate(10deg); }
+}
+
 .content-wrapper {
-  max-width: 1280px;
+  max-width: 1280px; /* Синхронизировано с CardsSection.vue */
+  width: 100%;
   margin: 0 auto;
+  padding: 0 clamp(1rem, 5%, 2rem);
   z-index: 2;
-  padding: 0 1.5rem;
+  box-sizing: border-box;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 4rem;
-  font-size: 2.2rem;
-  padding: 0 1rem;
+  margin-bottom: 3rem;
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Адаптивный размер */
+  line-height: 1.3;
+  opacity: 0;
+  animation: slideUpFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #8A2BE2, #64FFAB); /* Синхронизировано с CardsSection.vue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.animated-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8A2BE2, #64FFAB);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.section-title:hover .animated-underline::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .evolution-track {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 2rem 0;
-  gap: 1.5rem;
+  padding: clamp(1rem, 2vw, 2rem) 0;
+  gap: clamp(1rem, 2vw, 1.5rem);
   -ms-overflow-style: none;
   scrollbar-width: none;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .evolution-track::-webkit-scrollbar {
@@ -130,24 +187,26 @@ const progressWidth = (index) => {
 }
 
 .evolution-step {
-  flex: 0 0 300px;
+  flex: 0 0 clamp(260px, 85vw, 320px); /* Адаптивная ширина */
   scroll-snap-align: start;
   opacity: 0;
-  transform: translateY(30px);
-  animation: stepAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-delay: var(--delay);
   position: relative;
+  box-sizing: border-box;
 }
 
 .step-content {
-  background: rgba(45, 30, 60, 0.9); 
+  background: rgba(255, 255, 255, 0.03); /* Синхронизировано с RelevanceSection.vue */
   border-radius: 16px;
-  padding: 2rem;
-  height: 350px;
-  border: 1px solid rgba(138, 43, 226, 0.3); 
+  padding: clamp(1.5rem, 3vw, 2rem);
+  height: 320px;
+  border: 1px solid rgba(138, 43, 226, 0.2);
   transition: transform 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .step-content:hover {
@@ -157,31 +216,34 @@ const progressWidth = (index) => {
 .step-icon {
   width: 50px;
   height: 50px;
-  color: #BA55D3;
+  stroke: #8A2BE2; /* Синхронизировано с RelevanceSection.vue */
   margin-bottom: 1.5rem;
+  flex-shrink: 0;
 }
 
 .step-title {
-  color: #fff;
-  font-size: 1.4rem;
+  color: white;
+  font-size: clamp(1.3rem, 3.5vw, 1.4rem);
   margin-bottom: 1rem;
   line-height: 1.4;
 }
 
 .step-description {
-  color: #9CA3AF;
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
   line-height: 1.6;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .step-number {
   position: absolute;
   top: -15px;
   right: -15px;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   font-weight: 800;
-  color: rgba(138, 43, 226, 0.15); 
- z-index: -1;
+  color: rgba(138, 43, 226, 0.15);
+  z-index: -1;
 }
 
 .progress-line {
@@ -189,42 +251,58 @@ const progressWidth = (index) => {
   bottom: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
+  background: linear-gradient(90deg, #8A2BE2, #64FFAB);
   transition: width 0.5s ease;
 }
 
-@keyframes stepAppear {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@media (max-width: 1024px) {
+  .evolution-track {
+    max-width: 700px; /* Синхронизировано с CardsSection.vue */
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 768px) {
+  .evolution-section {
+    padding: 4rem clamp(0.5rem, 3%, 1rem);
+  }
+  .content-wrapper {
+    padding: 0 clamp(0.5rem, 3%, 1rem);
+  }
+  .evolution-orb {
+    display: none; /* Скрываем орб на мобильных */
+  }
   .section-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.8rem, 4.5vw, 2.2rem);
   }
-  
+  .evolution-track {
+    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+    display: grid;
+    grid-template-columns: 1fr; /* Переключаем на одноколоночный макет */
+  }
   .evolution-step {
-    flex: 0 0 85vw;
+    flex: 0 0 100%; /* Полная ширина */
   }
-  
   .step-content {
-    height: 320px;
+    height: auto;
     padding: 1.5rem;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+  }
   .step-title {
-    font-size: 1.3rem;
+    font-size: clamp(1.2rem, 3.5vw, 1.3rem);
+  }
+  .step-description {
+    font-size: clamp(0.85rem, 2.5vw, 0.9rem);
   }
 }
 
-.gradient-text {
- background: linear-gradient(45deg, #8A2BE2, #BA55D3);
-   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+@keyframes slideUpFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.animated-underline::after {
- background: linear-gradient(45deg, #8A2BE2, #BA55D3);}
 </style>

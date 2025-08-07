@@ -51,6 +51,14 @@ const links = ref([
   { name: 'Тарифы', path: '#pricing' },
 ])
 
+const isMenuOpen = ref(false)
+const hoverActive = ref(null)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+  document.body.style.overflow = isMenuOpen.value ? 'hidden' : 'auto'
+}
+
 const smoothScroll = async (targetId) => {
   try {
     const target = document.querySelector(targetId)
@@ -59,7 +67,7 @@ const smoothScroll = async (targetId) => {
       return
     }
 
-    const navbarHeight = document.querySelector('.navbar').offsetHeight
+    const navbarHeight = document.querySelector('.navbar').offsetHeight || 60
     const targetPosition = target.getBoundingClientRect().top + window.scrollY
     const offsetPosition = targetPosition - navbarHeight
 
@@ -69,33 +77,24 @@ const smoothScroll = async (targetId) => {
     })
 
     isMenuOpen.value = false
+    document.body.style.overflow = 'auto'
   } catch (error) {
     console.error('Scroll error:', error)
   }
 }
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+  isMenuOpen.value = false
+  document.body.style.overflow = 'auto'
+}
 </script>
 <style scoped>
-.burger-menu {
-  display: none;
-}
-
-.mobile-menu {
-  display: none;
-}
-.mobile-link {
-  color: white;
-  text-decoration: none;
-  padding: 0.8rem;
-  border-radius: 8px;
-  background: rgba(138,43,226,0.1);
-  transition: all 0.3s ease;
-}
-
-.mobile-link:active {
-  background: rgba(138,43,226,0.2);
-}
 .navbar {
-  position: fixed !important;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -109,17 +108,15 @@ const smoothScroll = async (targetId) => {
   border-bottom: 1px solid rgba(138, 43, 226, 0.1);
   box-sizing: border-box;
   max-width: 100vw;
-  overflow: hidden;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 700;
   letter-spacing: -0.5px;
   cursor: pointer;
   transition: opacity 0.3s ease;
   white-space: nowrap;
-  margin-right: 2rem;
 }
 
 .gradient-text {
@@ -130,25 +127,21 @@ const smoothScroll = async (targetId) => {
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  -ms-overflow-style: none; 
-  scrollbar-width: none;  
 }
 
 .link-item {
   position: relative;
-  flex-shrink: 0;
 }
 
 .nav-link {
   color: #FFFFFF;
   text-decoration: none;
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   letter-spacing: 0.5px;
   padding: 0.4rem 0;
   position: relative;
@@ -165,100 +158,91 @@ const smoothScroll = async (targetId) => {
   background: linear-gradient(90deg, #8A2BE2 70%, transparent 100%);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 0;
-  transform-origin: left center;
 }
 
-
-@media (max-width: 1024px) {
-  .navbar {
-    padding: 1rem 3%;
-  }
-  
-  .nav-links {
-    gap: 1.5rem;
-  }
-  
-  .logo {
-    font-size: 1.3rem;
-    margin-right: 1.5rem;
-  }
+.link-item:hover .link-underline {
+  width: 100%;
+  opacity: 1;
 }
 
-
-@media (max-width: 768px) {
-
-  .nav-links {
-    display: none;
-  }
-  
-  
-  .burger-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    padding: 8px;
-    margin-left: auto;
-  }
-  
-  .burger-line {
-    width: 24px;
-    height: 2px;
-    background: #8A2BE2;
-    transition: all 0.3s ease;
-  }
-
- 
-.mobile-menu {
-  position: fixed;
-  top: 60px; 
-  left: 0;
-  right: 0;
-  background: #0F0F0F;
-  padding: 1rem;
+.burger-menu {
   display: none;
   flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burger-line {
+  width: 25px;
+  height: 3px;
+  background: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: rgba(15, 15, 15, 0.98);
+  backdrop-filter: blur(12px);
+  padding: 1rem;
+  flex-direction: column;
   gap: 1rem;
-  border-bottom: 1px solid rgba(138,43,226,0.2);
-  z-index: 9999;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
 }
 
 .mobile-menu.active {
   display: flex;
+  transform: translateY(0);
 }
 
+.mobile-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: rgba(138, 43, 226, 0.1);
+  text-align: center;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  transition: all 0.3s ease;
+}
+
+.mobile-link:hover,
+.mobile-link:active {
+  background: rgba(138, 43, 226, 0.2);
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Скрываем горизонтальную навигацию */
+  }
+
+  .burger-menu {
+    display: flex; /* Показываем бургер-меню */
+  }
+
   .navbar {
-    flex-wrap: nowrap;
-    padding: 0.8rem 5%;
-    min-height: 60px;
+    padding: 0.8rem 3%;
   }
 
   .logo {
-    width: auto;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 1.3rem;
-    margin-right: 1rem;
+    font-size: clamp(1rem, 2.8vw, 1.3rem);
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
-    flex-wrap: wrap;
-    padding: 0.8rem 3%;
+    padding: 0.6rem 3%;
   }
-  
-  .logo {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    text-align: center;
-  }
-  
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-    max-width: 100%;
+
+  .mobile-menu {
+    top: 50px;
   }
 }
 </style>

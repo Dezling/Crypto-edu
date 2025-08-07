@@ -1,7 +1,6 @@
 <template>
   <section id="briefing" class="steps-section">
     <div class="content-wrapper">
-      <!-- Секция подхода -->
       <div class="approach-section">
         <h2 class="section-title">
           <span class="gradient-text">Системный подход</span> к обучению
@@ -33,8 +32,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Программа обучения -->
       <div class="modules-section">
         <h2 class="section-title">
           <span class="gradient-text">Программа</span> обучения
@@ -71,8 +68,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Практические задания -->
       <div class="practice-section">
         <h2 class="section-title">
           <span class="gradient-text">Практика</span> — основа навыков
@@ -103,7 +98,6 @@
     </div>
   </section>
 </template>
-
 
 <script setup>
 import { ref } from 'vue'
@@ -199,8 +193,7 @@ const modules = ref([
     ],
     result: 'Выход на международный уровень'
   }
-]);
-
+])
 
 const modulesContainer = ref(null)
 
@@ -211,29 +204,38 @@ const handleWheel = (e) => {
   }
 }
 </script>
+
 <style scoped>
 .steps-section {
-  padding: 6rem 1rem;
+  padding: 6rem clamp(1rem, 5%, 2rem); /* Синхронизировано с CardsSection.vue */
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+  background: #0F0F0F; /* Совместимо с GuaranteeSection.vue */
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 .content-wrapper {
-  max-width: 1200px;
+  max-width: 1280px; /* Синхронизировано с CardsSection.vue */
+  width: 100%;
   margin: 0 auto;
+  padding: 0 clamp(1rem, 5%, 2rem);
+  box-sizing: border-box;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Адаптивный размер */
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   color: white;
   font-weight: 600;
   line-height: 1.3;
+  opacity: 0;
+  animation: slideUpFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .gradient-text {
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  background: linear-gradient(45deg, #8A2BE2, #64FFAB); /* Синхронизировано с CardsSection.vue */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
@@ -248,17 +250,20 @@ const handleWheel = (e) => {
 
 .approach-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Уменьшено с 300px */
+  gap: clamp(1rem, 2vw, 2rem);
   margin-bottom: 6rem;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .approach-card {
-  padding: 2rem;
-  background: rgba(255,255,255,0.05);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255,255,255,0.1);
+  box-sizing: border-box;
 }
 
 .approach-card:hover {
@@ -272,6 +277,7 @@ const handleWheel = (e) => {
   fill: #8A2BE2;
   margin-bottom: 1.5rem;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .approach-card:hover .approach-icon {
@@ -279,43 +285,49 @@ const handleWheel = (e) => {
 }
 
 .approach-card h3 {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 3vw, 1.25rem);
   color: white;
   margin-bottom: 1rem;
   font-weight: 500;
 }
 
 .approach-card p {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.modules-section {
+  margin-top: 6rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
 }
 
 .modules-grid {
   display: flex;
   overflow-x: auto;
-  gap: 2rem;
+  gap: clamp(1rem, 2vw, 2rem);
   padding: 1.5rem 0;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .module-card {
-  min-width: 400px;
+  min-width: clamp(280px, 90vw, 360px); /* Адаптивная ширина */
   flex-shrink: 0;
-  padding: 2rem;
-  background: rgba(255,255,255,0.03);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.03);
   border-left: 4px solid #8A2BE2;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .module-card:hover {
-  background: rgba(255,255,255,0.05);
-}
-.modules-section {
-  margin-top: 6rem;
-  padding: 1rem; 
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .module-header {
@@ -336,6 +348,7 @@ const handleWheel = (e) => {
   color: white;
   font-weight: 600;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .module-points {
@@ -349,9 +362,11 @@ const handleWheel = (e) => {
   align-items: start;
   gap: 0.75rem;
   margin-bottom: 1rem;
-  color: rgba(255,255,255,0.9);
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
   line-height: 1.6;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .bullet-icon {
@@ -367,10 +382,10 @@ const handleWheel = (e) => {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
-  background: rgba(138,43,226,0.1);
+  background: rgba(138, 43, 226, 0.1);
   border-radius: 8px;
   color: #BA55D3;
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
   margin-top: 1.5rem;
 }
 
@@ -387,17 +402,20 @@ const handleWheel = (e) => {
 
 .practice-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Уменьшено с 300px */
+  gap: clamp(1rem, 2vw, 2rem);
   margin-top: 3rem;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .practice-card {
-  padding: 2rem;
-  background: rgba(255,255,255,0.03);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .practice-card:hover {
@@ -422,14 +440,16 @@ const handleWheel = (e) => {
 .practice-card h3 {
   color: white;
   margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   font-weight: 500;
 }
 
 .practice-card p {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .modules-grid::-webkit-scrollbar {
@@ -437,7 +457,7 @@ const handleWheel = (e) => {
 }
 
 .modules-grid::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
 }
 
@@ -452,9 +472,14 @@ const handleWheel = (e) => {
 
 @media (max-width: 1024px) {
   .section-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 4.5vw, 2.2rem);
   }
-  
+  .approach-grid,
+  .practice-cards {
+    grid-template-columns: 1fr;
+    max-width: 700px; /* Синхронизировано с CardsSection.vue */
+    margin: 0 auto;
+  }
   .approach-card,
   .practice-card {
     padding: 1.5rem;
@@ -463,42 +488,51 @@ const handleWheel = (e) => {
 
 @media (max-width: 768px) {
   .steps-section {
-    padding: 4rem 1rem;
+    padding: 4rem clamp(0.5rem, 3%, 1rem);
   }
-  
+  .content-wrapper {
+    padding: 0 clamp(0.5rem, 3%, 1rem);
+  }
   .section-title {
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    font-size: clamp(1.6rem, 4vw, 2rem);
   }
-  
-  .approach-grid,
-  .practice-cards {
-    grid-template-columns: 1fr;
-  }
-  
   .module-card {
+    min-width: clamp(260px, 85vw, 320px);
     padding: 1.5rem;
   }
-  
   .module-number {
     width: 35px;
     height: 35px;
     font-size: 1rem;
   }
+  .modules-grid {
+    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+    display: grid;
+    grid-template-columns: 1fr; /* Переключаем на одноколоночный макет */
+  }
 }
 
 @media (max-width: 480px) {
   .section-title {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 3.5vw, 1.75rem);
   }
-  
   .approach-icon {
     width: 40px;
     height: 40px;
   }
-  
   .practice-card {
     padding: 1.5rem 1rem;
   }
+  .module-points li {
+    font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  }
+  .module-card {
+    min-width: 100%; /* Полная ширина на маленьких экранах */
+  }
+}
+
+@keyframes slideUpFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>

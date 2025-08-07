@@ -33,7 +33,7 @@
     <div class="telegram-container">
       <h2 class="section-title">
         <span class="gradient-text">Присоединяйтесь </span>
-        <span class="animated-underline">  к нашему сообществу</span>
+        <span class="animated-underline">к нашему сообществу</span>
       </h2>
 
       <div class="telegram-grid">
@@ -77,6 +77,7 @@
     </div>
   </section>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 
@@ -102,11 +103,14 @@ const handleHover = (index) => {
 
 <style scoped>
 .telegram-section {
-  padding: 8rem 5%;
+  padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 5%, 2rem);
   background: #0F0F0F;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
+
 .background-effects {
   position: absolute;
   width: 100%;
@@ -114,27 +118,32 @@ const handleHover = (index) => {
   top: 0;
   left: 0;
   pointer-events: none;
+  z-index: 1;
 }
+
 .particles {
   position: absolute;
   width: 100%;
   height: 100%;
 }
+
 .particle {
   position: absolute;
-  background: rgba(138,43,226,0.1);
+  background: rgba(138, 43, 226, 0.1);
   border-radius: 50%;
   animation: float 4s infinite ease-in-out;
 }
+
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-40px) scale(0.8); }
 }
+
 .gradient-wave {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140%;
+  width: clamp(100%, 140vw, 150%);
   height: auto;
   transform: translate(-50%, -50%);
   opacity: 0.08;
@@ -147,16 +156,19 @@ const handleHover = (index) => {
 }
 
 .telegram-container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  padding: 0 clamp(1rem, 5%, 2rem);
+  box-sizing: border-box;
 }
 
 .section-title {
-  font-size: 3.2rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  line-height: 1.3;
   opacity: 0;
   animation: slideUp 1s ease forwards;
   animation-delay: 0.2s;
@@ -166,32 +178,42 @@ const handleHover = (index) => {
   background: linear-gradient(45deg, #8A2BE2, #BA55D3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 .animated-underline {
   position: relative;
   display: inline-block;
+  padding-bottom: 0.3rem;
 }
 
 .animated-underline::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #8A2BE2 0%, transparent 100%);
+  background: linear-gradient(90deg, #8A2BE2, transparent);
+  transform: scaleX(0);
+  transform-origin: right;
   animation: underlineExpand 1.2s ease forwards;
   animation-delay: 0.5s;
 }
 
+@keyframes underlineExpand {
+  to { transform: scaleX(1); transform-origin: left; }
+}
+
 .telegram-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  margin-top: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(260px, 45vw, 500px), 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-top: clamp(2rem, 5vw, 3rem);
   position: relative;
   z-index: 1;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .telegram-card {
@@ -207,38 +229,39 @@ const handleHover = (index) => {
   perspective: 1000px;
 }
 
-
 .telegram-card::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(45deg, 
-    rgba(138,43,226,0.15) 0%,
-    rgba(75,0,130,0.1) 100%);
+    rgba(138, 43, 226, 0.15) 0%,
+    rgba(75, 0, 130, 0.1) 100%);
   border-radius: 24px;
-  border: 1px solid rgba(138,43,226,0.2);
+  border: 1px solid rgba(138, 43, 226, 0.2);
   z-index: 1;
   transition: all 0.4s ease;
 }
+
 .telegram-card:hover {
   transform: translateY(-8px);
 }
-.telegram-card:hover::before {
-  border-color: rgba(138,43,226,0.4);
-  background: linear-gradient(45deg, 
-    rgba(138,43,226,0.2) 0%,
-    rgba(75,0,130,0.15) 100%);
-}
 
+.telegram-card:hover::before {
+  border-color: rgba(138, 43, 226, 0.4);
+  background: linear-gradient(45deg, 
+    rgba(138, 43, 226, 0.2) 0%,
+    rgba(75, 0, 130, 0.15) 100%);
+}
 
 .card-inner {
   position: relative;
-  padding: 3rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: clamp(1rem, 2vw, 1.5rem);
   z-index: 2;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
 }
 
 .telegram-card:hover .card-inner {
@@ -247,8 +270,8 @@ const handleHover = (index) => {
 
 .telegram-icon {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: clamp(60px, 12vw, 80px);
+  height: clamp(60px, 12vw, 80px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,23 +279,25 @@ const handleHover = (index) => {
   background: linear-gradient(45deg, #8A2BE2 0%, #4B0082 100%);
   color: white;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .telegram-card:hover .telegram-icon {
   transform: rotate(15deg) scale(1.1);
 }
+
 .icon-glow {
   position: absolute;
   width: 120%;
   height: 120%;
-  background: radial-gradient(rgba(138,43,226,0.3), transparent 60%);
+  background: radial-gradient(rgba(138, 43, 226, 0.3), transparent 60%);
   animation: glowPulse 2s infinite;
 }
 
 .tg-logo {
-  width: 40px;
-  height: 40px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  width: clamp(30px, 8vw, 40px);
+  height: clamp(30px, 8vw, 40px);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .content-wrapper {
@@ -280,7 +305,7 @@ const handleHover = (index) => {
 }
 
 .channel-title {
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   background: linear-gradient(45deg, #FFF 30%, #BA55D3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -290,9 +315,11 @@ const handleHover = (index) => {
 .channel-description {
   color: #CCCCCC;
   line-height: 1.6;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   position: relative;
-  padding-left: 24px;
+  padding-left: clamp(1rem, 3vw, 1.5rem);
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .channel-description::before {
@@ -301,7 +328,7 @@ const handleHover = (index) => {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 16px;
+  width: clamp(10px, 2vw, 16px);
   height: 2px;
   background: linear-gradient(90deg, #8A2BE2 0%, transparent 100%);
 }
@@ -324,8 +351,8 @@ const handleHover = (index) => {
   width: 200%;
   height: 200%;
   background: radial-gradient(circle at 50% 50%, 
-    rgba(138,43,226,0.15) 0%,
-    rgba(138,43,226,0) 60%);
+    rgba(138, 43, 226, 0.15) 0%,
+    rgba(138, 43, 226, 0) 60%);
   animation: rotateGlow 12s linear infinite;
 }
 
@@ -343,37 +370,85 @@ const handleHover = (index) => {
   to { transform: rotate(360deg); }
 }
 
-@keyframes underlineExpand {
-  to { width: 100%; }
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+@media (max-width: 1024px) {
+  .telegram-grid {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .card-inner {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
 }
 
 @media (max-width: 768px) {
-  .telegram-grid {
-    grid-template-columns: 1fr;
+  .telegram-section {
+    padding: clamp(3rem, 8vw, 4rem) clamp(0.5rem, 3%, 1rem);
   }
-  
+
+  .telegram-container {
+    padding: 0 clamp(0.5rem, 3%, 1rem);
+  }
+
+  .gradient-wave {
+    display: none; /* Hide wave on mobile to prevent overflow */
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4.5vw, 2.2rem);
+  }
+
   .card-inner {
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem;
+    gap: clamp(0.5rem, 2vw, 1rem);
   }
-  
-  .channel-title {
-    font-size: 1.6rem;
-  }
-  
+
   .telegram-icon {
-    width: 60px;
-    height: 60px;
+    width: clamp(50px, 10vw, 60px);
+    height: clamp(50px, 10vw, 60px);
   }
-  
+
   .tg-logo {
-    width: 30px;
-    height: 30px;
+    width: clamp(25px, 6vw, 30px);
+    height: clamp(25px, 6vw, 30px);
   }
-  
+
+  .channel-title {
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  }
+
+  .channel-description {
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    padding-left: clamp(0.5rem, 2vw, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+  }
+
+  .telegram-grid {
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .card-inner {
+    padding: clamp(0.8rem, 2vw, 1.2rem);
+  }
+
+  .channel-title {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+  }
+
+  .channel-description {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
   }
 }
 </style>

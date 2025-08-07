@@ -1,3 +1,4 @@
+
 <template>
   <section class="relevance-section">
     <div class="decorative-elements">
@@ -81,7 +82,7 @@ const relevanceItems = ref([
     title: 'Вечная актуальность',
     text: [
       'Арбитраж — экономический механизм, эволюционирующий вместе с рынком. Причины вечной востребованности:',
-      'Рынок никогда не будет идеально синхронизирован — технические сбои, регуляторные запреты и панические продажи создают постоянные дисбалансы. Новые инструменты (DeFi, NFT) расширяют возможности, но суть остается прежней.'
+      'Рынок никогда не будет идеально синхронизирован — технические сбои, регуляторные запреты и панические продажи создают постоянные дисбаланс. Новые инструменты (DeFi, NFT) расширяют возможности, но суть остается прежней.'
     ],
     keyPoints: [
       'Дисбалансы — естественное состояние рынка',
@@ -94,11 +95,15 @@ const relevanceItems = ref([
   }
 ])
 </script>
+
 <style scoped>
 .relevance-section {
-  padding: 8rem 0;
+  padding: 6rem clamp(1rem, 5%, 2rem); /* Синхронизировано с CardsSection.vue */
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+  background: #0F0F0F; /* Совместимо с GuaranteeSection.vue */
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 .decorative-elements {
@@ -113,8 +118,10 @@ const relevanceItems = ref([
 
 .floating-orb {
   position: absolute;
-  right: -100px;
   top: 50%;
+  right: clamp(0.5rem, 2vw, 1rem); /* Адаптивный отступ */
+  width: clamp(80px, 12vw, 100px); /* Уменьшенный размер */
+  height: clamp(80px, 12vw, 100px);
   transform: translateY(-50%);
   filter: blur(80px);
   opacity: 0.15;
@@ -129,20 +136,24 @@ const relevanceItems = ref([
 .content-wrapper {
   position: relative;
   z-index: 2;
-  max-width: 1280px;
+  max-width: 1280px; /* Синхронизировано с CardsSection.vue */
+  width: 100%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 5%, 2rem);
+  box-sizing: border-box;
 }
 
 .section-title {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Адаптивный размер */
   text-align: center;
-  margin-bottom: 4rem;
-  line-height: 1.2;
+  margin-bottom: 3rem;
+  line-height: 1.3;
+  opacity: 0;
+  animation: slideUpFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .gradient-text {
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  background: linear-gradient(45deg, #8A2BE2, #64FFAB); /* Синхронизировано с CardsSection.vue */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
@@ -151,7 +162,7 @@ const relevanceItems = ref([
 .animated-underline {
   position: relative;
   display: inline-block;
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.3rem;
 }
 
 .animated-underline::after {
@@ -161,10 +172,10 @@ const relevanceItems = ref([
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
+  background: linear-gradient(90deg, #8A2BE2, #64FFAB);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .section-title:hover .animated-underline::after {
@@ -174,38 +185,34 @@ const relevanceItems = ref([
 
 .relevance-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Уменьшено с 450px */
+  gap: clamp(1rem, 2vw, 2rem);
   position: relative;
   z-index: 2;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .relevance-card {
   opacity: 0;
-  transform: translateY(30px);
-  animation: cardRise 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-delay: var(--delay);
-}
-
-@keyframes cardRise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .card-inner {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(138, 43, 226, 0.1);
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(15px);
-  min-height: 500px;
+  min-height: 400px; /* Уменьшено с 500px */
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .card-inner:hover {
@@ -220,7 +227,7 @@ const relevanceItems = ref([
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(138,43,226,0.1) 0%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
   filter: blur(60px);
   z-index: -1;
   transition: all 0.8s ease;
@@ -238,9 +245,9 @@ const relevanceItems = ref([
 }
 
 .card-number {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 800;
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  background: linear-gradient(45deg, #8A2BE2, #64FFAB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1;
@@ -249,8 +256,9 @@ const relevanceItems = ref([
 .card-icon {
   width: 50px;
   height: 50px;
-  stroke: url(#iconGradient);
+  stroke: #8A2BE2; /* Заменено с url(#iconGradient) */
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
 
 .card-inner:hover .card-icon {
@@ -259,10 +267,11 @@ const relevanceItems = ref([
 }
 
 .card-title {
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
   margin-bottom: 1.5rem;
   position: relative;
   padding-bottom: 0.8rem;
+  color: white;
 }
 
 .card-title::after {
@@ -272,7 +281,7 @@ const relevanceItems = ref([
   left: 0;
   width: 40px;
   height: 2px;
-  background: linear-gradient(90deg, #8A2BE2, #4B0082);
+  background: linear-gradient(90deg, #8A2BE2, #64FFAB);
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -281,12 +290,14 @@ const relevanceItems = ref([
 }
 
 .card-text {
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.8;
   margin-bottom: 1.5rem;
   position: relative;
   padding-left: 1.5rem;
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .card-text::before {
@@ -298,7 +309,7 @@ const relevanceItems = ref([
 }
 
 .first-word {
-  background: linear-gradient(45deg, #8A2BE2, #BA55D3);
+  background: linear-gradient(45deg, #8A2BE2, #64FFAB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
@@ -308,7 +319,7 @@ const relevanceItems = ref([
 .key-points {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: rgba(138,43,226,0.05);
+  background: rgba(138, 43, 226, 0.05);
   border-radius: 12px;
   border-left: 3px solid #8A2BE2;
 }
@@ -318,9 +329,12 @@ const relevanceItems = ref([
   align-items: center;
   gap: 1rem;
   padding: 0.8rem 0;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   transition: transform 0.3s ease;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .point:hover {
@@ -343,9 +357,10 @@ const relevanceItems = ref([
 @media (max-width: 1024px) {
   .relevance-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: clamp(1rem, 2vw, 2rem);
+    max-width: 700px; /* Синхронизировано с CardsSection.vue */
+    margin: 0 auto;
   }
-  
   .card-inner {
     min-height: auto;
     padding: 2rem;
@@ -353,25 +368,30 @@ const relevanceItems = ref([
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.2rem;
+  .relevance-section {
+    padding: 4rem clamp(0.5rem, 3%, 1rem);
   }
-  
+  .content-wrapper {
+    padding: 0 clamp(0.5rem, 3%, 1rem);
+  }
+  .floating-orb {
+    display: none; /* Скрываем орб на мобильных */
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4.5vw, 2.2rem);
+  }
   .card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  
   .card-number {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 4.5vw, 2.2rem);
   }
-  
   .card-text {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     padding-left: 1rem;
   }
-  
   .key-points {
     padding: 1rem;
   }
@@ -379,19 +399,24 @@ const relevanceItems = ref([
 
 @media (max-width: 480px) {
   .section-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
   }
-  
   .card-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 3.5vw, 1.5rem);
   }
-  
+  .card-text {
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  }
   .card-text::before {
     left: -0.5rem;
   }
-  
   .point {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   }
+}
+
+@keyframes slideUpFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>

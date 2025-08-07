@@ -55,19 +55,19 @@ const sections = [
   { component: ArbitrageSection },
   { component: ProfileSection },
   { component: AboutSection , name: 'about'},
-  { component: FullWorkSection },
-  { component: BriefingSection, name:'briefing' },
+  { component: FullWorkSection }, // ломает
+  { component: BriefingSection, name:'briefing' }, //ломает
   { component: JailCardSections },
   { component: GarantSection },
-  { component: CasesComponent, name:'cases' },
-  { component: ActualArgitrageSection },
-  { component: UpPointsSection },
+  { component: CasesComponent, name:'cases' }, //ЛОМАЕТ
+  { component: ActualArgitrageSection }, //ЛОМАЕТ
+  { component: UpPointsSection }, //ЛОМАЕТ
   { component: FreePeoductSelection },
   { component: TarifSection, name:'pricing' },
   { component: AskerSection },
   { component: WowSection },
   { component: FaqSection },
-  { component: SharedSection }
+  // { component: SharedSection }
 ]
 
 const sectionRefs = ref([])
@@ -191,27 +191,4 @@ body {
   backdrop-filter: blur(10px);
 }
 
-@media (max-width: 768px) {
-  .scroll-section {
-    padding: 4rem 1rem 1rem;
-    min-height: auto;
-    height: auto !important;
-  }
-  
-  .scroll-section:not(.active-section) {
-    transform: translateY(10px) scale(0.98);
-    filter: blur(4px);
-    opacity: 0.6;
-  }
-  
-  .scroll-section::before {
-    backdrop-filter: blur(8px);
-  }
-}
-
-@supports (-webkit-overflow-scrolling: touch) {
-  .scroll-section {
-    -webkit-transform: translateZ(0);
-  }
-}
 </style>
