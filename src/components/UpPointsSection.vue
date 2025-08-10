@@ -297,7 +297,7 @@ const progressWidth = (index) => {
     font-size: clamp(1.2rem, 3.5vw, 1.3rem);
   }
   .step-description {
-    font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+    font-size: clamp(1rem, 2.5vw, 0.7rem);
   }
 }
 

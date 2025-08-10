@@ -528,7 +528,7 @@ const penalties = ref([
   }
   
   .card {
-    padding: 1.8rem;
+    padding: 1rem;
   }
   
   .section-title {
